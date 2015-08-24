@@ -1,5 +1,15 @@
 /* jshint node: true */
 
+var contentSecurityPolicy = {
+  'default-src': "'none'",
+  'script-src': "'self'",
+  'font-src': "'self'",
+  'connect-src': "'self' localhost:* api.type-and-learn.kalina.tech:*",
+  'img-src': "'self'",
+  'style-src': "'self' 'unsafe-inline'",
+  'media-src': "'self'"
+};
+
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'type-and-learn-client',
@@ -27,6 +37,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
     ENV.apiHost = 'http://api.type-and-learn-api.dev';
+    ENV.contentSecurityPolicy = contentSecurityPolicy;
+    ENV.contentSecurityPolicy['script-src'] = "'self' 'unsafe-eval'";
   }
 
   if (environment === 'test') {
