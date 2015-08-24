@@ -25,6 +25,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+    ENV.apiHost = 'http://api.type-and-learn-api.dev';
   }
 
   if (environment === 'test') {
@@ -40,7 +42,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.apiHost = 'http://api.type-and-learn.kalina.tech';
   }
 
   return ENV;
