@@ -4,7 +4,7 @@ var contentSecurityPolicy = {
   'default-src': "'none'",
   'script-src': "'self'",
   'font-src': "'self'",
-  'connect-src': "'self' localhost:* api.type-and-learn.kalina.tech:*",
+  'connect-src': "'self' localhost:* api.type-and-learn.kalina.tech:* api.type-and-learn-api.dev:*",
   'img-src': "'self'",
   'style-src': "'self' 'unsafe-inline'",
   'media-src': "'self'"
