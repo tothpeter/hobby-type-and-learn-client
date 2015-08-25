@@ -1,6 +1,19 @@
 import Ember from 'ember';
-import LoginControllerMixin from 'simple-auth/mixins/login-controller-mixin';
 
-export default Ember.Controller.extend(LoginControllerMixin, {
-  authenticator: 'simple-auth-authenticator:devise'
+export default Ember.Controller.extend({
+  actions: {
+    authenticate: function() {
+      var credentials = this.getProperties('identification', 'password');
+
+      if (!credentials.identification || !credentials.password) {
+        return false;
+      }
+
+      this.get('session').authenticate('simple-auth-authenticator:devise', credentials).then(function() {
+        // authentication was successful
+      }, function() {
+        // authentication failed
+      });
+    }
+  }
 });
