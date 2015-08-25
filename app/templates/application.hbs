@@ -1,3 +1,19 @@
-<h2 id="title">Welcome to Ember.js</h2>
+<h2 id="title">Welcome to Ember.js - With Authentication!</h2>
+
+{{#if session.isAuthenticated}}
+  {{ session.currentUser.username }}
+  Hi, {{session.email}}
+  <br/>
+  You can't see this text unless you're logged in!
+  <br/>
+  Click this button to logout: 
+  <button {{action 'invalidateSession'}}>Logout</button>
+  <br/>
+  If you try to go to the
+  {{#link-to "login"}}Login{{/link-to}}
+  page, you should get redirected!
+{{else}}
+  {{#link-to "login"}}Login{{/link-to}}
+{{/if}}
 
 {{outlet}}

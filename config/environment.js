@@ -39,6 +39,17 @@ module.exports = function(environment) {
     ENV.apiHost = 'http://api.type-and-learn-api.dev';
     ENV.contentSecurityPolicy = contentSecurityPolicy;
     ENV.contentSecurityPolicy['script-src'] = "'self' 'unsafe-eval'";
+
+    ENV['simple-auth'] = {
+      authorizer: 'simple-auth-authorizer:devise',
+      crossOriginWhitelist: ['http://type-and-learn.dev']
+    };
+
+    ENV['simple-auth-devise'] = {
+      // tokenAttributeName: 'token',
+      // identificationAttributeName: 'email',
+      serverTokenEndpoint: ENV.apiHost + '/sessions'
+    };
   }
 
   if (environment === 'test') {
