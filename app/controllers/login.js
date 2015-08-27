@@ -9,8 +9,10 @@ export default Ember.Controller.extend({
         return false;
       }
 
+      var _this = this;
+
       this.get('session').authenticate('simple-auth-authenticator:devise', credentials).then(function() {
-        // authentication was successful
+        _this.session.setCurrentUser();
       }, function() {
         // authentication failed
       });

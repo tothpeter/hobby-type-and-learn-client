@@ -1,8 +1,7 @@
 <h2 id="title">Welcome to Ember.js - With Authentication!</h2>
 
 {{#if session.isAuthenticated}}
-  {{ session.currentUser.username }}
-  Hi, {{session.email}}
+  Hi, {{session.currentUser.email}}
   <br/>
   You can't see this text unless you're logged in!
   <br/>

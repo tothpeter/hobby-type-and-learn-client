@@ -46,8 +46,8 @@ module.exports = function(environment) {
     };
 
     ENV['simple-auth-devise'] = {
-      // tokenAttributeName: 'token',
-      // identificationAttributeName: 'email',
+      tokenAttributeName: 'token',
+      identificationAttributeName: 'email',
       serverTokenEndpoint: ENV.apiHost + '/sessions'
     };
   }
