@@ -16,7 +16,47 @@
   </head>
   <body>
     <script type="text/javascript">
-      window.setupPreloadedUserParams = {"data":{"id":"2","type":"users","links":{"self":"/users/2"},"attributes":{"email":"tothpeter08@gmail.com"},"relationships":{"categories":{"links":{"related":"/me/categories"}}}}};
+      window.setupPreloadedUserParams = {
+        "data": {
+            "id": "2",
+            "type": "users",
+            "attributes": {
+                "email": "tothpeter08@gmail.com"
+            },
+            "relationships": {
+                "labels": {
+                    "data": [
+                        {
+                            "type": "labels",
+                            "id": "1"
+                        },
+                        {
+                            "type": "labels",
+                            "id": "2"
+                        }
+                    ]
+                }
+            }
+        },
+        "included": [
+            {
+                "id": "1",
+                "type": "labels",
+                "attributes": {
+                    "title": "label 1",
+                    "position": 2
+                }
+            },
+            {
+                "id": "2",
+                "type": "labels",
+                "attributes": {
+                    "title": "label 2",
+                    "position": 0
+                }
+            }
+        ]
+    };
     </script>
     {{content-for 'body'}}
 
