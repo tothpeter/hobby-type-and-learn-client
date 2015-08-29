@@ -12,7 +12,7 @@ function initialize(application) {
       store.pushPayload('user', preloadedUser);
 
       var user = store.peekRecord('user', preloadedUser.data.id);
-      this.set('currentUser', user);
+      this.set('content.currentUser', user);
     }
   });
 }
