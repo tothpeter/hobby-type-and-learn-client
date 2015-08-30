@@ -13,6 +13,7 @@ export default Ember.Controller.extend({
 
       this.get('session').authenticate('simple-auth-authenticator:devise', credentials).then(function() {
         _this.session.setCurrentUser();
+        _this.transitionTo('profile');
       }, function() {
         // authentication failed
       });
