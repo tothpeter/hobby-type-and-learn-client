@@ -42,7 +42,7 @@ module.exports = function(environment) {
 
     ENV['simple-auth'] = {
       authorizer: 'simple-auth-authorizer:devise',
-      // crossOriginWhitelist: ['http://type-and-learn.dev']
+      crossOriginWhitelist: ['http://api.type-and-learn-api.dev']
     };
 
     ENV['simple-auth-devise'] = {
