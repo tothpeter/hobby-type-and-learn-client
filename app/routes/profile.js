@@ -9,7 +9,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       var _this = this;
       
       label.save().then(function() {
-        $('.modal').modal('hide');
         _this.send('removeModal');
       },
       function(message) {
