@@ -1,0 +1,8 @@
+{{#my-modal title='New label' ok='createLabel' close='removeModal'}}
+  <form {{action 'createLabel' on='submit'}}>
+    <div class="form-group">
+      <label>Title</label>
+      {{input class="form-control" value=title}}
+    </div>
+  </form>
+{{/my-modal}}

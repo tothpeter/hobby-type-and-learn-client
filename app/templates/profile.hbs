@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-lg-2 col-md-2 col-sm-2">
       <div class="list-group">
+        <button {{action 'showModal' 'profile.labels.new' null 'profile.labels'}}>New label</button>
         {{#each session.currentUser.labels as |label|}}
           {{#link-to 'profile.labels.cards' label class="list-group-item band-link"}}
             {{label.title}}
