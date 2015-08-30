@@ -1,0 +1,12 @@
+{{#if session.isAuthenticated}}
+  Hi, {{session.currentUser.email}}
+  <br/>
+  You can't see this text unless you're logged in!
+  <br/>
+  Click this button to logout: 
+  <button {{action 'invalidateSession'}}>Logout</button>
+  <br/>
+  If you try to go to the
+  {{#link-to "login"}}Login{{/link-to}}
+  page, you should get redirected!
+{{/if}}
