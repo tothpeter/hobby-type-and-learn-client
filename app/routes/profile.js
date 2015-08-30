@@ -10,8 +10,26 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       
       label.save().then(function() {
         _this.send('removeModal');
+        controller.set('title', '');
       },
       function(message) {
+        alert('Error: ' + message);
+      });
+    },
+
+    updateLabel: function(options) {
+      var controller = this.controllerFor('profile.labels'),
+          label = options.model,
+          _this = this;
+
+      label.setProperties(controller.getProperties('title'));
+      
+      label.save().then(function() {
+        _this.send('removeModal');
+        controller.set('title', '');
+      },
+      function(message) {
+        label.rollback();
         alert('Error: ' + message);
       });
     }

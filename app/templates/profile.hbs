@@ -4,10 +4,13 @@
       <div class="list-group">
         <button {{action 'showModal' 'profile.labels.new' null 'profile.labels'}}>New label</button>
         {{#each session.currentUser.labels as |label|}}
-          {{#link-to 'profile.labels.cards' label class="list-group-item band-link"}}
-            {{label.title}}
-            <span class="pointer glyphicon glyphicon-chevron-right"></span>
-          {{/link-to}}
+          <div class="list-group-item">
+            {{#link-to 'profile.labels.cards' label}}
+              {{label.title}}
+              <span class="pointer glyphicon glyphicon-chevron-right"></span>
+            {{/link-to}}
+            <span {{action 'showModal' 'profile.labels.edit' label 'profile.labels'}} class="btn btn-sm btn-primary">edit</span>
+          </div>
         {{/each}}
       </div>
     </div>
