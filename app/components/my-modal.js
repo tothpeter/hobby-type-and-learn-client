@@ -1,13 +1,11 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  model: null,
+
   actions: {
-    ok: function(hideModal = false) {
-      if (hideModal) {
-        this.$('.modal').modal('hide');
-      }
-      
-      this.sendAction('ok');
+    ok: function() {
+      this.sendAction('ok', {model: this.get('model')});
     }
   },
 
