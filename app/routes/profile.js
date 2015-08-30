@@ -7,6 +7,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       var controller = this.controllerFor('profile.labels');
       var label = this.store.createRecord('label', controller.getProperties('title'));
       var _this = this;
+
+      label.set('position', this.get('session.currentUser.labels.length') + 1);
       
       label.save().then(function() {
         _this.send('removeModal');
