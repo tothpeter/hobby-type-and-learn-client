@@ -7,5 +7,22 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     if (this.session.get('isAuthenticated')) {
       return this.session.setCurrentUser(window.setupPreloadedUserParams);
     }
+  },
+
+  actions: {
+    showModal: function(name, model, controller = 'application') {
+      this.render(name, {
+        into: 'application',
+        outlet: 'modal',
+        model: model,
+        controller: controller
+      });
+    },
+    removeModal: function() {
+      this.disconnectOutlet({
+        outlet: 'modal',
+        parentView: 'application'
+      });
+    }
   }
 });
