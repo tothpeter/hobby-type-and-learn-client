@@ -6,7 +6,15 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     createLabel: function() {
       var controller = this.controllerFor('profile.labels');
       var label = this.store.createRecord('label', controller.getProperties('title'));
-      label.save();
+      var _this = this;
+      
+      label.save().then(function() {
+        $('.modal').modal('hide');
+        _this.send('removeModal');
+      },
+      function(message) {
+        alert('Error: ' + message);
+      });
     }
   }
 });
