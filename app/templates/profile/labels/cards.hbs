@@ -13,7 +13,7 @@
     {{#link-to (query-params page=prevPage)}}Previous{{/link-to}}
   {{/if}}
 
-  {{#each num in pageRange}}
+  {{#each pageRange as |num|}}
     {{#link-to (query-params page=num)}}{{num}}{{/link-to}}
   {{/each}}
 
