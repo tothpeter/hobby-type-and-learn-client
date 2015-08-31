@@ -1,1 +1,25 @@
-{{outlet}}
+<div class="list-group">
+  {{#each model as |card|}}
+    <div class="list-group-item">
+      {{card.sideA}}
+    </div>
+  {{/each}}
+</div>
+
+<div class="pagination">
+  {{#if isFirstPage}}
+    Previous
+  {{else}}
+    {{#link-to (query-params page=prevPage)}}Previous{{/link-to}}
+  {{/if}}
+
+  {{#each num in pageRange}}
+    {{#link-to (query-params page=num)}}{{num}}{{/link-to}}
+  {{/each}}
+
+  {{#if isLastPage}}
+    Next
+  {{else}}
+    {{#link-to (query-params page=nextPage)}}Next{{/link-to}}
+  {{/if}}
+</div>
