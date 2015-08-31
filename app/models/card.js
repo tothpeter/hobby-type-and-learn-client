@@ -1,8 +1,10 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  email: DS.attr('string'),
-  
+  sidA: DS.attr(),
+  sideB: DS.attr(),
+  rating: DS.attr('numeric'),
+
+  user: DS.belongsTo('user'),
   labels: DS.hasMany('label', { async: true }),
-  cards: DS.hasMany('card', { async: true }),
 });

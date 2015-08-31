@@ -5,4 +5,5 @@ export default DS.Model.extend({
   position: DS.attr('number'),
 
   user: DS.belongsTo('user'),
+  cards: DS.hasMany('card', { async: true }),
 });
