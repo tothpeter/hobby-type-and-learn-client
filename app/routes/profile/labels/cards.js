@@ -7,7 +7,11 @@ export default Ember.Route.extend({
     }
   },
   model: function(params) {
-    var query = {};
+    var label = this.modelFor('profile.labels');
+    
+    var query = {
+      label_id: label.get('id')
+    };
 
     if(Ember.isPresent(params.page)) {
       query.page = params.page;
