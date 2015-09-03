@@ -24,5 +24,31 @@ export default Ember.Route.extend({
     this._super.apply(this, arguments);
 
     controller.set('totalPages', model.get('meta.total-pages'));
+  },
+
+  actions: {
+    createCard: function() {
+
+      var controller = this.controllerFor('profile.cards');
+      var card = this.store.createRecord('card', controller.getProperties('sideA', 'sideB', 'proficiencyLevel'));
+      var _this = this;
+
+      card.set('user', this.get('session.currentUser'));
+
+      if (controller.get('selectedLabel')) {
+        card.get('labels').pushObject(controller.get('selectedLabel'));
+      }
+
+      card.save().then(function(card) {
+        controller.get('selectedLabel').get('cards').pushObject(card);
+        _this.send('removeModal');
+        controller.set('sideA', '');
+        controller.set('sideB', '');
+        controller.set('proficiency_level', 0);
+      },
+      function(message) {
+        alert('Error: ' + message);
+      });
+    }
   }
 });
