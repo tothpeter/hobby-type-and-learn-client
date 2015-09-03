@@ -36,12 +36,12 @@ export default Ember.Route.extend({
       card.set('user', this.get('session.currentUser'));
 
       if (controller.get('selectedLabel')) {
-        card.get('labels').pushObject(controller.get('selectedLabel'));
+        card.get('labels').pushObjects(controller.get('selectedLabel'));
       }
 
-      card.save().then(function(card) {
-        controller.get('selectedLabel').get('cards').pushObject(card);
+      card.save().then(function() {
         _this.send('removeModal');
+
         controller.set('sideA', '');
         controller.set('sideB', '');
         controller.set('proficiency_level', 0);
