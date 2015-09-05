@@ -3,10 +3,16 @@
     <div class="form-group">
       <label>Sida A</label>
       {{input class="form-control" value=model.sideA}}
+      {{#if errors.model.sideA}}
+        {{errors.model.sideA}}
+      {{/if}}
     </div>
     <div class="form-group">
       <label>Sida B</label>
       {{input class="form-control" value=model.sideB}}
+      {{#if errors.model.sideB}}
+        {{errors.model.sideB}}
+      {{/if}}
     </div>
     <div class="form-group">
       <label>How well do you know it</label>
