@@ -29,22 +29,19 @@ export default Ember.Route.extend({
   actions: {
     createCard: function() {
 
-      var controller = this.controllerFor('profile.cards');
-      var card = this.store.createRecord('card', controller.getProperties('sideA', 'sideB', 'proficiencyLevel'));
+      var controller = this.controllerFor('profile.cards.new');
       var _this = this;
+      var card = this.store.createRecord('card', controller.get('model'));
 
       card.set('user', this.get('session.currentUser'));
-
-      if (controller.get('selectedLabel')) {
-        card.get('labels').pushObjects(controller.get('selectedLabel'));
-      }
 
       card.save().then(function() {
         _this.send('removeModal');
 
-        controller.set('sideA', '');
-        controller.set('sideB', '');
-        controller.set('proficiency_level', 0);
+        controller.set('model.sideA', '');
+        controller.set('model.sideB', '');
+        controller.set('model.proficiency_level', 0);
+        controller.set('model.labels', []);
       },
       function(message) {
         alert('Error: ' + message);

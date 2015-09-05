@@ -1,10 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  sideA: "",
-  sideB: "",
-  proficiencyLevel: 0,
-  // selectedLabel: null,
   selectedLabels: Ember.computed('session.currentUser.labels', 'model.labels', function() {
     return this.get('model').get('labels').toArray();
   }),
