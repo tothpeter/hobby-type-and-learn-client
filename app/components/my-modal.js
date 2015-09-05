@@ -10,8 +10,12 @@ export default Ember.Component.extend({
   },
 
   show: function() {
-    this.$('.modal').modal().on('hidden.bs.modal', function() {
+    this.$('.modal').modal()
+    .on('hidden.bs.modal', function() {
       this.sendAction('close');
-    }.bind(this));
+    }.bind(this))
+    .on('shown.bs.modal', function () {
+      $(this).find('input').eq(0).focus();
+    });
   }.on('didInsertElement')
 });
