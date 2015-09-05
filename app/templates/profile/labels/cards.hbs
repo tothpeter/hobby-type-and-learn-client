@@ -4,7 +4,7 @@
   {{#each model as |card|}}
     <div class="list-group-item">
       {{card.sideA}}
-      <span {{action 'showModal' 'profile.cards.edit' card 'profile.cards'}} class="btn btn-sm btn-primary">edit</span>
+      <span {{action 'showModal' 'profile.cards.edit' card 'profile.cards.edit'}} class="btn btn-sm btn-primary">edit</span>
     </div>
   {{/each}}
 </div>

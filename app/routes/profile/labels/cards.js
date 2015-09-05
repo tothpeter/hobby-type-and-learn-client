@@ -52,7 +52,7 @@ export default Ember.Route.extend({
       var card = options.model,
           _this = this;
 
-      var controller = this.controllerFor('profile.cards');
+      var controller = this.controllerFor('profile.cards.edit');
       card.set('labels', controller.get('selectedLabels'));
       // TODO: remove and add card to corresponding labels (has many there)
 

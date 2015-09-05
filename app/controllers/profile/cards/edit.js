@@ -7,11 +7,5 @@ export default Ember.Controller.extend({
 
   labels: Ember.computed('session.currentUser.labels', function() {
     return this.store.peekAll('label').toArray();
-  }),
-
-  // selection: Ember.computed('labels', function() {
-  //   return this.get('labels')[0];
-  // })
-
-  
+  })
 });
