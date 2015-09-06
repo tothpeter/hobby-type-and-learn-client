@@ -7,7 +7,10 @@ export default Ember.Controller.extend(LabelValidations, {
 
   actions: {
     updateLabel: function() {
-      this.set('isSaving', true);
+      if (this.get('isValid')) {
+        this.set('isSaving', true);
+      }
+
       return this.get('isValid');
     },
 
