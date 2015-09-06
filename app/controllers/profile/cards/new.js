@@ -21,6 +21,21 @@ export default Ember.Controller.extend(PostValidations, {
     }
   },
 
+  successfulSave: function() {
+    this.send('removeModal');
+
+    this.set('showErrors', false);
+
+    this.set('model.sideA', '');
+    this.set('model.sideB', '');
+    this.set('model.proficiency_level', 0);
+    this.set('model.labels', []);
+  },
+
+  failedSave: function(message) {
+    alert('Error: ' + message);
+  },
+
   labels: Ember.computed('session.currentUser.labels', function() {
     return this.store.peekAll('label').toArray();
   })

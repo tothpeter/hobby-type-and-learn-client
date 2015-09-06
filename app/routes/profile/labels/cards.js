@@ -28,23 +28,16 @@ export default Ember.Route.extend({
 
   actions: {
     createCard: function() {
-
-      var controller = this.controllerFor('profile.cards.new');
-      var _this = this;
-      var card = this.store.createRecord('card', controller.get('model'));
+      var controller = this.controllerFor('profile.cards.new'),
+          card = this.store.createRecord('card', controller.get('model'));
 
       card.set('user', this.get('session.currentUser'));
 
       card.save().then(function() {
-        _this.send('removeModal');
-
-        controller.set('model.sideA', '');
-        controller.set('model.sideB', '');
-        controller.set('model.proficiency_level', 0);
-        controller.set('model.labels', []);
+        controller.successfulSave();
       },
       function(message) {
-        alert('Error: ' + message);
+        controller.failedSave(message);
       });
     },
 
