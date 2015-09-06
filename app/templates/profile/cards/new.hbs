@@ -2,7 +2,7 @@
   <form {{action 'createCard' on='submit'}}>
     <div class="form-group {{has-error-class showErrors errors.model.sideA}}">
       <label class="control-label">Sida A</label>
-      {{input class="form-control" value=model.sideA}}
+      {{input class="form-control {{error-class showErrors errors.model.sideA}}" value=model.sideA}}
       {{display-errors errors=errors.model.sideA showErrors=showErrors}}
     </div>
     <div class="form-group {{has-error-class showErrors errors.model.sideB}}">
@@ -25,5 +25,6 @@
         multiple="true"
       }}
     </div>
+    <input type="submit" class="hidden">
   </form>
 {{/my-modal}}
