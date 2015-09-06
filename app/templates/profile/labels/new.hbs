@@ -1,8 +1,8 @@
-{{#my-modal title='New label' ok='createLabel' close='removeModal'}}
+{{#my-modal title='New label' ok='createLabel' close='removeModal' isLoading=isSaving}}
   <form {{action 'createLabel' on='submit'}}>
     <div class="form-group {{has-error-class showErrors errors.model.title}}">
       <label class="control-label">Title</label>
-      {{input class="form-control" value=model.title}}
+      {{input class="form-control" value=model.title disabled=isSaving}}
       {{display-errors errors=errors.model.title showErrors=showErrors}}
     </div>
   </form>

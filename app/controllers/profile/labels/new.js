@@ -7,11 +7,15 @@ export default Ember.Controller.extend(LabelValidations, {
   },
 
   showErrors: false,
+  isSaving: false,
 
   actions: {
     createLabel: function() {
       if(!this.get('isValid')) {
         this.set('showErrors', true);
+      }
+      else {
+        this.set('isSaving', true);
       }
 
       return this.get('isValid');
@@ -19,11 +23,16 @@ export default Ember.Controller.extend(LabelValidations, {
   },
 
   successfulSave: function() {
-    this.send('removeModal');
-
     this.set('showErrors', false);
+    this.set('isSaving', false);
 
     this.set('model.title', '');
+
+    var _this = this;
+
+    setTimeout(function() {
+      _this.send('removeModal');
+    }, 0);
   },
 
   failedSave: function(message) {

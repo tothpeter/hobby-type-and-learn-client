@@ -19,11 +19,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     updateLabel: function(options) {
       var label = options.model,
-          controller = this.controllerFor('profile.labels.new'),
-          _this = this;
+          controller = this.controllerFor('profile.labels.edit');
 
       label.save().then(function() {
-        _this.send('removeModal');
+        controller.successfulSave();
       },
       function(message) {
         label.rollbackAttributes();

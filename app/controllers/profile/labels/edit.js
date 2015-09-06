@@ -3,9 +3,11 @@ import LabelValidations from 'type-and-learn-client/mixins/validations/label';
 
 export default Ember.Controller.extend(LabelValidations, {
   showErrors: true,
+  isSaving: false,
 
   actions: {
     updateLabel: function() {
+      this.set('isSaving', true);
       return this.get('isValid');
     },
 
@@ -15,7 +17,18 @@ export default Ember.Controller.extend(LabelValidations, {
     }
   },
 
+  successfulSave: function() {
+    this.set('isSaving', false);
+
+    var _this = this;
+
+    setTimeout(function() {
+      _this.send('removeModal');
+    }, 0);
+  },
+
   failedSave: function(message) {
+    this.set('isSaving', false);
     alert('Error: ' + message);
   }
 });
