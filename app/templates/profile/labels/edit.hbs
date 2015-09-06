@@ -1,8 +1,9 @@
-{{#my-modal title='Edit label' ok='updateLabel' close='removeModal' model=model as |component|}}
+{{#my-modal title='Edit label' ok='updateLabel' close='cancel' model=model as |component|}}
   <form {{action 'ok' on='submit' target=component}}>
-    <div class="form-group">
-      <label>Label title</label>
+    <div class="form-group {{has-error-class showErrors errors.model.title}}">
+      <label class="control-label">Title</label>
       {{input class="form-control" value=model.title}}
+      {{display-errors errors=errors.model.title showErrors=showErrors}}
     </div>
   </form>
 {{/my-modal}}

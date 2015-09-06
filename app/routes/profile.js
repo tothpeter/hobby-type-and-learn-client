@@ -26,7 +26,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       },
       function(message) {
         label.rollback();
-        alert('Error: ' + message);
+        controller.failedSave(message);
       });
     }
   }
