@@ -53,7 +53,7 @@ export default Ember.Route.extend({
         _this.send('removeModal');
       },
       function(message) {
-        card.rollback();
+        card.rollbackAttributes();
         alert('Error: ' + message);
       });
     }

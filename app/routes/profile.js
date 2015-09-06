@@ -25,7 +25,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         _this.send('removeModal');
       },
       function(message) {
-        label.rollback();
+        label.rollbackAttributes();
         controller.failedSave(message);
       });
     }

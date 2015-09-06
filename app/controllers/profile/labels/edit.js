@@ -10,7 +10,7 @@ export default Ember.Controller.extend(LabelValidations, {
     },
 
     cancel: function() {
-      this.get('model').rollback();
+      this.get('model').rollbackAttributes();
       this.send('removeModal');
     }
   },
