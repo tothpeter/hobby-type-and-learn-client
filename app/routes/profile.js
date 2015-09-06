@@ -4,18 +4,16 @@ import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixi
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   actions: {
     createLabel: function() {
-      var controller = this.controllerFor('profile.labels');
-      var label = this.store.createRecord('label', controller.getProperties('title'));
-      var _this = this;
+      var controller = this.controllerFor('profile.labels.new'),
+          label = this.store.createRecord('label', controller.get('model'));
 
-      label.set('position', this.get('session.currentUser.labels.length') + 1);
+      // label.set('position', this.get('session.currentUser.labels.length') + 1);
       
       label.save().then(function() {
-        _this.send('removeModal');
-        controller.set('title', '');
+        controller.successfulSave();
       },
       function(message) {
-        alert('Error: ' + message);
+        controller.failedSave(message);
       });
     },
 
