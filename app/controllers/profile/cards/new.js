@@ -10,11 +10,19 @@ export default Ember.Controller.extend(PostValidations, {
   },
 
   showErrors: false,
+  isSaving: false,
+
+  isNotSaving: Ember.computed('isSaving', function() {
+    return !this.get('isSaving');
+  }),
 
   actions: {
     createCard: function() {
       if(!this.get('isValid')) {
         this.set('showErrors', true);
+      }
+      else {
+        this.set('isSaving', true);
       }
 
       return this.get('isValid');
@@ -22,17 +30,23 @@ export default Ember.Controller.extend(PostValidations, {
   },
 
   successfulSave: function() {
-    this.send('removeModal');
-
+    this.set('isSaving', false);
     this.set('showErrors', false);
 
     this.set('model.sideA', '');
     this.set('model.sideB', '');
     this.set('model.proficiency_level', 0);
     this.set('model.labels', []);
+
+    var _this = this;
+
+    setTimeout(function() {
+      _this.send('removeModal');
+    }, 0);
   },
 
   failedSave: function(message) {
+    this.set('isSaving', false);
     alert('Error: ' + message);
   },
 

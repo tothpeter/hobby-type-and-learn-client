@@ -1,18 +1,18 @@
-{{#my-modal title='New card' ok='createCard' close='removeModal'}}
+{{#my-modal title='New card' ok='createCard' close='removeModal' isLoading=isSaving}}
   <form {{action 'createCard' on='submit'}}>
     <div class="form-group {{has-error-class showErrors errors.model.sideA}}">
       <label class="control-label">Side A</label>
-      {{input class="form-control" value=model.sideA}}
+      {{input class="form-control" value=model.sideA disabled=isSaving}}
       {{display-errors errors=errors.model.sideA showErrors=showErrors}}
     </div>
     <div class="form-group {{has-error-class showErrors errors.model.sideB}}">
       <label class="control-label">Side B</label>
-      {{input class="form-control" value=model.sideB}}
+      {{input class="form-control" value=model.sideB disabled=isSaving}}
       {{display-errors errors=errors.model.sideB showErrors=showErrors}}
     </div>
     <div class="form-group">
       <label>How well do you know it</label>
-      {{input class="form-control" value=model.proficiencyLevel}}
+      {{input class="form-control" value=model.proficiencyLevel disabled=isSaving}}
     </div>
     <div class="form-group">
       <label>Labels:</label>
@@ -22,6 +22,7 @@
         placeholder="Add labels"
         optionLabelPath="title"
         multiple="true"
+        enabled=isNotSaving
       }}
     </div>
     <input type="submit" class="hidden">
