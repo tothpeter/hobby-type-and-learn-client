@@ -1,16 +1,21 @@
-<div class="modal fade">
+<div class="modal my-modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" disabled={{isLoading}}>&times;</button>
         <h4 class="modal-title">{{title}}</h4>
       </div>
       <div class="modal-body">
         {{yield this}}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" {{action 'ok'}}>OK</button>
+        <div class="pull-left loading-message-wrapper {{if isLoading 'active'}}">
+          <div class="spinner-default spinner-small"></div>
+          <div class="loading-message">Loading, please wait...</div>
+        </div>
+
+        <button type="button" class="btn btn-default" data-dismiss="modal" disabled={{isLoading}}>Close</button>
+        <button type="button" class="btn btn-primary" {{action 'ok'}} disabled={{isLoading}}>OK</button>
       </div>
     </div>
   </div>

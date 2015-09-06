@@ -1,0 +1,50 @@
+.spinner-default {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  border-top: 2px solid #00a8ff;
+  border-right: 2px solid #cfdee5;
+  border-bottom: 2px solid #cfdee5;
+  border-left: 2px solid #cfdee5;
+  border-radius: 100%;
+
+  @include animation(rotate-spinner 1.5s infinite linear);
+
+  &.spinner-small {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+
+.loading-message-wrapper {
+  opacity: 0;
+  
+  @include transform(scale(.8));
+  @include transition(all .2s);
+  
+  &.active {
+    opacity: 1;
+    @include transform(scale(1));
+  }
+  
+  .spinner-default {
+    float: left;
+    margin-right: 6px;
+  }
+
+  .loading-message {
+    float: left;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
+@include keyframes(rotate-spinner) {
+  from {
+    @include transform(rotate(0));
+  }
+  to {
+    @include transform(rotate(359deg));
+  }
+}
