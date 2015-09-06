@@ -54,7 +54,7 @@ export default Ember.Route.extend({
       },
       function(message) {
         card.rollbackAttributes();
-        alert('Error: ' + message);
+        controller.failedSave(message);
       });
     }
   }

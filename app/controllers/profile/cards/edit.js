@@ -15,6 +15,10 @@ export default Ember.Controller.extend(PostValidations, {
     }
   },
 
+  failedSave: function(message) {
+    alert('Error: ' + message);
+  },
+
   selectedLabels: Ember.computed('session.currentUser.labels', 'model.labels', function() {
     return this.get('model').get('labels').toArray();
   }),

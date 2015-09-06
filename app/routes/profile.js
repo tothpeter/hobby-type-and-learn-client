@@ -19,6 +19,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     updateLabel: function(options) {
       var label = options.model,
+          controller = this.controllerFor('profile.labels.new'),
           _this = this;
 
       label.save().then(function() {
