@@ -9,12 +9,12 @@ export default Ember.Controller.extend(PostValidations, {
     labels: []
   },
 
-  displayValidation: false,
+  showErrors: false,
 
   actions: {
     createCard: function() {
       if(!this.get('isValid')) {
-        this.set('displayValidation', true);
+        this.set('showErrors', true);
       }
 
       return this.get('isValid');
