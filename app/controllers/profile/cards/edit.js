@@ -7,6 +7,11 @@ export default Ember.Controller.extend(PostValidations, {
   actions: {
     createCard: function() {
       return this.get('isValid');
+    },
+
+    cancel: function() {
+      this.get('model').rollback();
+      this.send('removeModal');
     }
   },
 

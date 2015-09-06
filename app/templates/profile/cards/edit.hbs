@@ -1,4 +1,4 @@
-{{#my-modal title='Edit label' ok='updateCard' close='removeModal' model=model as |component|}}
+{{#my-modal title='Edit label' ok='updateCard' close='cancel' model=model as |component|}}
   <form {{action 'ok' on='submit' target=component}}>
     <div class="form-group {{has-error-class showErrors errors.model.sideA}}">
       <label class="control-label">Side A</label>
