@@ -5,7 +5,7 @@ export default Ember.Controller.extend(PostValidations, {
   showErrors: true,
 
   actions: {
-    createCard: function() {
+    updateCard: function() {
       return this.get('isValid');
     },
 
