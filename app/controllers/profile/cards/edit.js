@@ -1,6 +1,15 @@
 import Ember from 'ember';
+import PostValidations from 'type-and-learn-client/mixins/validations/post';
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(PostValidations, {
+  showErrors: true,
+
+  actions: {
+    createCard: function() {
+      return this.get('isValid');
+    }
+  },
+
   selectedLabels: Ember.computed('session.currentUser.labels', 'model.labels', function() {
     return this.get('model').get('labels').toArray();
   }),

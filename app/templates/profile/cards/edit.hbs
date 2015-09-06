@@ -1,19 +1,21 @@
 {{#my-modal title='Edit label' ok='updateCard' close='removeModal' model=model as |component|}}
   <form {{action 'ok' on='submit' target=component}}>
-    <div class="form-group">
-      <label>Sida A</label>
+    <div class="form-group {{has-error-class showErrors errors.model.sideA}}">
+      <label class="control-label">Side A</label>
       {{input class="form-control" value=model.sideA}}
+      {{display-errors errors=errors.model.sideA showErrors=showErrors}}
     </div>
-    <div class="form-group">
-      <label>Sida B</label>
+    <div class="form-group {{has-error-class showErrors errors.model.sideB}}">
+      <label class="control-label">Side B</label>
       {{input class="form-control" value=model.sideB}}
+      {{display-errors errors=errors.model.sideB showErrors=showErrors}}
     </div>
     <div class="form-group">
       <label>How well do you know it</label>
       {{input class="form-control" value=model.proficiencyLevel}}
     </div>
     <div class="form-group">
-      <label>Label:</label>
+      <label>Labels:</label>
       {{select-2
         content=labels
         value=selectedLabels
