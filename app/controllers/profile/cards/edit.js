@@ -3,9 +3,18 @@ import PostValidations from 'type-and-learn-client/mixins/validations/post';
 
 export default Ember.Controller.extend(PostValidations, {
   showErrors: true,
+  isSaving: false,
+
+  isNotSaving: Ember.computed('isSaving', function() {
+    return !this.get('isSaving');
+  }),
 
   actions: {
     updateCard: function() {
+      if (this.get('isValid')) {
+        this.set('isSaving', true);
+      }
+
       return this.get('isValid');
     },
 
@@ -15,7 +24,18 @@ export default Ember.Controller.extend(PostValidations, {
     }
   },
 
+  successfulSave: function() {
+    this.set('isSaving', false);
+
+    var _this = this;
+
+    setTimeout(function() {
+      _this.send('removeModal');
+    }, 0);
+  },
+
   failedSave: function(message) {
+    this.set('isSaving', false);
     alert('Error: ' + message);
   },
 

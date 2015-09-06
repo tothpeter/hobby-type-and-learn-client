@@ -42,15 +42,14 @@ export default Ember.Route.extend({
     },
 
     updateCard: function(options) {
-      var card = options.model,
-          _this = this;
+      var card = options.model;
 
       var controller = this.controllerFor('profile.cards.edit');
       card.set('labels', controller.get('selectedLabels'));
-      // TODO: remove and add card to corresponding labels (has many there)
 
       card.save().then(function() {
-        _this.send('removeModal');
+        // TODO: sync cards to corresponding labels (has many there)
+        controller.successfulSave();
       },
       function(message) {
         card.rollbackAttributes();
