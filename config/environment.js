@@ -23,6 +23,10 @@ module.exports = function(environment) {
       }
     },
 
+    'simple-auth': {
+      authorizer: 'simple-auth-authorizer:devise'
+    },
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
@@ -39,6 +43,8 @@ module.exports = function(environment) {
     ENV.apiHost = 'http://api.type-and-learn-api.dev';
     ENV.contentSecurityPolicy = contentSecurityPolicy;
     ENV.contentSecurityPolicy['script-src'] = "'self' 'unsafe-eval'";
+
+    ENV['simple-auth'].crossOriginWhitelist = [ENV.apiHost];
   }
 
   if (environment === 'test') {
@@ -55,12 +61,9 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.apiHost = 'http://api.type-and-learn.kalina.tech';
-  }
 
-  ENV['simple-auth'] = {
-    authorizer: 'simple-auth-authorizer:devise',
-    crossOriginWhitelist: ['http://api.type-and-learn-api.dev']
-  };
+    ENV['simple-auth'].crossOriginWhitelist = [ENV.apiHost];
+  }
 
   ENV['simple-auth-devise'] = {
     tokenAttributeName: 'token',
