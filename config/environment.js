@@ -39,11 +39,6 @@ module.exports = function(environment) {
     ENV.apiHost = 'http://api.type-and-learn-api.dev';
     ENV.contentSecurityPolicy = contentSecurityPolicy;
     ENV.contentSecurityPolicy['script-src'] = "'self' 'unsafe-eval'";
-
-    ENV['simple-auth'] = {
-      authorizer: 'simple-auth-authorizer:devise',
-      crossOriginWhitelist: ['http://api.type-and-learn-api.dev']
-    };
   }
 
   if (environment === 'test') {
@@ -61,6 +56,11 @@ module.exports = function(environment) {
   if (environment === 'production') {
     ENV.apiHost = 'http://api.type-and-learn.kalina.tech';
   }
+
+  ENV['simple-auth'] = {
+    authorizer: 'simple-auth-authorizer:devise',
+    crossOriginWhitelist: ['http://api.type-and-learn-api.dev']
+  };
 
   ENV['simple-auth-devise'] = {
     tokenAttributeName: 'token',
