@@ -44,12 +44,6 @@ module.exports = function(environment) {
       authorizer: 'simple-auth-authorizer:devise',
       crossOriginWhitelist: ['http://api.type-and-learn-api.dev']
     };
-
-    ENV['simple-auth-devise'] = {
-      tokenAttributeName: 'token',
-      identificationAttributeName: 'email',
-      serverTokenEndpoint: ENV.apiHost + '/sessions'
-    };
   }
 
   if (environment === 'test') {
@@ -67,6 +61,12 @@ module.exports = function(environment) {
   if (environment === 'production') {
     ENV.apiHost = 'http://api.type-and-learn.kalina.tech';
   }
+
+  ENV['simple-auth-devise'] = {
+    tokenAttributeName: 'token',
+    identificationAttributeName: 'email',
+    serverTokenEndpoint: ENV.apiHost + '/sessions'
+  };
 
   return ENV;
 };
