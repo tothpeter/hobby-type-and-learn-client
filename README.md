@@ -41,7 +41,12 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+#### To upload assets
+* `ember deploy --environment production`
+
+#### To activate a certain release
+* `ember deploy:list`
+* `ember deploy:activate --revision type-and-learn-client:<release> --environment production`
 
 ## Further Reading / Useful Links
 
