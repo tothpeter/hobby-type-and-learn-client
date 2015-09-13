@@ -31,18 +31,21 @@ function initialize(application) {
           },
         })
         .done(function(currentUser) {
-          if (currentUser == null) {
-            _this.invalidate();
-            reject();
-          }
-          else {
-            _this.setCurrentUser(currentUser);
-            resolve();
-          }
-          
+          Ember.run(function() {
+            if (currentUser == null) {
+              _this.invalidate();
+              reject();
+            }
+            else {
+              _this.setCurrentUser(currentUser);
+              resolve();
+            }
+          });
         })
         .fail(function() {
-          reject();
+          Ember.run(function() {
+            reject();
+          });
         });
 
       });
