@@ -7,14 +7,10 @@ moduleForComponent('my-modal', 'Integration | Component | my modal', {
 });
 
 test('it renders', function(assert) {
-  assert.expect(2);
+  // assert.expect(2);
 
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
-
-  this.render(hbs`{{my-modal}}`);
-
-  assert.equal(this.$().text(), '');
 
   // Template block usage:
   this.render(hbs`
@@ -23,5 +19,7 @@ test('it renders', function(assert) {
     {{/my-modal}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.notEqual(this.$().text().indexOf('template block text'), -1);
+
+  $('body').removeClass('modal-open').find('.modal-backdrop').remove();
 });
