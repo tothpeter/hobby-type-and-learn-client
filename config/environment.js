@@ -58,6 +58,9 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
 
+    ENV.apiHost = 'http://type-and-learn-api.dev';
+    ENV['simple-auth'].crossOriginWhitelist = [ENV.apiHost];
+
     ENV['simple-auth'].store = 'simple-auth-session-store:ephemeral';
   }
 
