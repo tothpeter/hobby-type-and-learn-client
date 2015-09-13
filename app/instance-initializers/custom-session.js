@@ -16,16 +16,12 @@ function initialize(application) {
       var user = store.peekRecord('user', preloadedUser.data.id);
       this.set('content.currentUser', user);
 
-      var date = new Date();
-      date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
-      var expires = '; expires=' + date.toUTCString();
-
-      document.cookie = 'auth_token_for_web=' + this.get('content.secure.token') + expires + '; path=/; domain=' + location.host + ';';
+      setAuthCookie(this.get('content.secure.token'), 365);
     },
 
     fetchCurrentUser: function() {
-      const _this = this;
-      const adapter = application.container.lookup('adapter:application');
+      const _this = this,
+            adapter = application.container.lookup('adapter:application');
 
       var promise = new Ember.RSVP.Promise(function(resolve, reject) {
         Ember.$.ajax({
@@ -55,8 +51,8 @@ function initialize(application) {
     },
 
     logout: function() {
-      const token =  this.get('content.secure.token');
-      const adapter = application.container.lookup('adapter:application');
+      const token =  this.get('content.secure.token'),
+            adapter = application.container.lookup('adapter:application');
       
       this.invalidate();
 
@@ -65,13 +61,17 @@ function initialize(application) {
         method: 'DELETE'
       });
 
-      var date = new Date();
-      date.setTime(date.getTime() - 1);
-      var expires = '; expires=' + date.toUTCString();
-
-      document.cookie = 'auth_token_for_web=' + expires + '; path=/; domain=' + location.host + ';';
+      setAuthCookie('', -1);
     }
   });
+
+  var setAuthCookie = function setAuthCookie(val, days) {
+      var date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      var expires = '; expires=' + date.toUTCString();
+
+      document.cookie = 'auth_token_for_web=' + val + expires + '; path=/; domain=' + location.host + ';';
+  };
 }
 
 export default {
