@@ -40,7 +40,7 @@ export default Ember.Controller.extend(PostValidations, {
 
     var _this = this;
 
-    setTimeout(function() {
+    Ember.run.later(function() {
       _this.send('removeModal');
     }, 0);
   },

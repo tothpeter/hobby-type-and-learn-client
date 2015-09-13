@@ -30,7 +30,7 @@ export default Ember.Controller.extend(LabelValidations, {
 
     var _this = this;
 
-    setTimeout(function() {
+    Ember.run.later(function() {
       _this.send('removeModal');
     }, 0);
   },
