@@ -5,10 +5,13 @@ import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 export default Ember.Route.extend(ApplicationRouteMixin, {
   beforeModel: function() {
     if (this.session.get('isAuthenticated')) {
-      const currentUserPayload = Ember.$('meta[name=current-user]')[0];
+      const currentUserPayload = Ember.$('meta[name=current-user]')[0],
+            _this = this;
       
       if (!currentUserPayload) {
-        return this.session.fetchCurrentUser();
+        return this.session.fetchCurrentUser().then(null, function() {
+          _this.transitionTo('/');
+        });
       }
       
       this.session.setCurrentUser(JSON.parse(currentUserPayload.content));

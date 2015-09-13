@@ -35,8 +35,15 @@ function initialize(application) {
           },
         })
         .done(function(currentUser) {
-          _this.setCurrentUser(currentUser);
-          resolve();
+          if (currentUser == null) {
+            _this.invalidate();
+            reject();
+          }
+          else {
+            _this.setCurrentUser(currentUser);
+            resolve();
+          }
+          
         })
         .fail(function() {
           reject();
