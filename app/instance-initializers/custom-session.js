@@ -19,6 +19,30 @@ function initialize(application) {
       var expires = '; expires=' + date.toUTCString();
 
       document.cookie = 'auth_token_for_web=' + this.get('content.secure.token') + expires + '; path=/; domain=' + location.host + ';';
+    },
+
+    fetchCurrentUser: function() {
+      const _this = this;
+      const adapter = application.container.lookup('adapter:application');
+
+      var promise = new Promise(function(resolve, reject) {
+        $.ajax({
+          url: adapter.buildURL() + '/current_user',
+          beforeSend: function(request) {
+            request.setRequestHeader('Authorization', 'Token token="' + _this.get('content.secure.token') + '"');
+          },
+        })
+        .done(function(currentUser) {
+          _this.setCurrentUser(currentUser);
+          resolve();
+        })
+        .fail(function() {
+          reject();
+        });
+
+      });
+
+      return promise;
     }
   });
 }
