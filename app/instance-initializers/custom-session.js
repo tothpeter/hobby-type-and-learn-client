@@ -1,3 +1,5 @@
+import Ember from 'ember';
+
 function initialize(application) {
   var session = application.container.lookup('simple-auth-session:main');
 
@@ -25,8 +27,8 @@ function initialize(application) {
       const _this = this;
       const adapter = application.container.lookup('adapter:application');
 
-      var promise = new Promise(function(resolve, reject) {
-        $.ajax({
+      var promise = new Ember.RSVP.Promise(function(resolve, reject) {
+        Ember.$.ajax({
           url: adapter.buildURL() + '/current_user',
           beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Token token="' + _this.get('content.secure.token') + '"');
