@@ -45,6 +45,24 @@ function initialize(application) {
       });
 
       return promise;
+    },
+
+    logout: function() {
+      const token =  this.get('content.secure.token');
+      const adapter = application.container.lookup('adapter:application');
+      
+      this.invalidate();
+
+      Ember.$.ajax({
+        url: adapter.buildURL() + '/sessions/' + token,
+        method: 'DELETE'
+      });
+
+      var date = new Date();
+      date.setTime(date.getTime() - 1);
+      var expires = '; expires=' + date.toUTCString();
+
+      document.cookie = 'auth_token_for_web=' + expires + '; path=/; domain=' + location.host + ';';
     }
   });
 }

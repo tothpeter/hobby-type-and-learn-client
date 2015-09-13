@@ -30,6 +30,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         outlet: 'modal',
         parentView: 'application'
       });
+    },
+
+    logout: function() {
+      this.get('session').logout();
+      this.transitionTo('/');
     }
   }
 });
