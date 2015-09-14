@@ -5,6 +5,7 @@
       <div class="list-group">
         {{#each session.currentUser.labels as |label|}}
           <div class="list-group-item">
+            <span {{action 'removeLabel' label}} class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span>
             <span {{action 'showModal' 'profile.labels.edit' label 'profile.labels.edit'}} class="btn btn-sm btn-primary btn-edit-label">edit</span>
             {{#link-to 'profile.labels.cards' label}}
               {{label.title}}

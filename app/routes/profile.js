@@ -28,6 +28,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         label.rollbackAttributes();
         controller.failedSave(message);
       });
+    },
+
+    removeLabel: function(label) {
+      if (window.confirm('Are you sure, you want to delete this label?')) {
+        label.destroyRecord();
+      }
+      // TODO: redirect to profile if we stay on the deleted path
     }
   }
 });
