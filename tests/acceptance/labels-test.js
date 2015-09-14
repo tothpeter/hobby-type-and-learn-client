@@ -50,7 +50,7 @@ test('create new label', function(assert) {
   authenticateSession();
 
   visit('/profile');
-  click('.list-group > button');
+  click('.btn-add-new-label');
 
   fillIn('.modal-dialog input', 'Test Label Title');
   click('button:contains("OK")');
@@ -75,7 +75,7 @@ test('edit existing label', function(assert) {
   authenticateSession();
 
   visit('/profile');
-  click('.list-group:first-of-type span:contains("edit")');
+  click('.btn-edit-label');
 
   fillIn('.modal-dialog input', 'New Label Title');
   click('button:contains("OK")');
