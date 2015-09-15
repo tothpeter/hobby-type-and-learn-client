@@ -16,13 +16,14 @@
     </div>
     <div class="form-group">
       <label>Labels:</label>
-      {{select-2
+      {{ember-selectize
         content=labels
-        value=selectedLabels
-        placeholder="Add labels"
-        optionLabelPath="title"
+        optionValuePath="content.id"
+        optionLabelPath="content.title"
+        selection=model.labels
+        placeholder="Select labels"
         multiple="true"
-        enabled=isNotSaving
+        disabled=isSaving
       }}
     </div>
     <input type="submit" class="hidden">

@@ -16,6 +16,7 @@
     "ember-simple-auth": "0.8.0",
     "select2": "3.5.2",
     "bourbon": "4.2.3",
-    "pretender": "^0.10.0"
+    "pretender": "^0.10.0",
+    "selectize": "~0.12.1"
   }
 }

@@ -42,13 +42,10 @@ export default Ember.Route.extend({
     },
 
     updateCard: function(options) {
-      var card = options.model;
-
-      var controller = this.controllerFor('profile.cards.edit');
-      card.set('labels', controller.get('selectedLabels'));
+      var card = options.model,
+          controller = this.controllerFor('profile.cards.edit');
 
       card.save().then(function() {
-        // TODO: sync cards to corresponding labels (has many there)
         controller.successfulSave();
       },
       function(message) {

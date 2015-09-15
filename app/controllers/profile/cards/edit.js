@@ -5,10 +5,6 @@ export default Ember.Controller.extend(PostValidations, {
   showErrors: true,
   isSaving: false,
 
-  isNotSaving: Ember.computed('isSaving', function() {
-    return !this.get('isSaving');
-  }),
-
   actions: {
     updateCard: function() {
       if (this.get('isValid')) {
