@@ -52,6 +52,12 @@ export default Ember.Route.extend({
         card.rollbackAttributes();
         controller.failedSave(message);
       });
+    },
+
+    removeCard: function(card) {
+      if (window.confirm('Are you sure, you want to delete this card?')) {
+        card.destroyRecord();
+      }
     }
   }
 });
