@@ -1,0 +1,29 @@
+<button {{action 'showModal' 'profile.cards.new' null 'profile.cards.new'}}>New card</button>
+
+<div class="list-group">
+  {{#each model as |card|}}
+    <div class="list-group-item">
+      <span {{action 'removeCard' card}} class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span>
+      <span {{action 'showModal' 'profile.cards.edit' card 'profile.cards.edit'}} class="btn btn-sm btn-primary">edit</span>
+      {{card.sideA}}
+    </div>
+  {{/each}}
+</div>
+
+<div class="pagination">
+  {{#if isFirstPage}}
+    Previous
+  {{else}}
+    {{#link-to (query-params page=prevPage)}}Previous{{/link-to}}
+  {{/if}}
+
+  {{#each pageRange as |num|}}
+    {{#link-to (query-params page=num)}}{{num}}{{/link-to}}
+  {{/each}}
+
+  {{#if isLastPage}}
+    Next
+  {{else}}
+    {{#link-to (query-params page=nextPage)}}Next{{/link-to}}
+  {{/if}}
+</div>
