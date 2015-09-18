@@ -1,11 +1,7 @@
 import Ember from 'ember';
+import PaginationRouteMixin from 'type-and-learn-client/mixins/routes/pagination';
 
-export default Ember.Route.extend({
-  queryParams: {
-    page: {
-      refreshModel: true
-    }
-  },
+export default Ember.Route.extend(PaginationRouteMixin, {
   model: function(params) {
     var label = this.modelFor('profile.labels');
     
@@ -18,12 +14,6 @@ export default Ember.Route.extend({
     }
 
     return this.store.query('card', query);
-  },
-  
-  setupController: function(controller, model) {
-    this._super.apply(this, arguments);
-
-    controller.set('totalPages', model.get('meta.total-pages'));
   },
 
   actions: {

@@ -10,20 +10,4 @@
   {{/each}}
 </div>
 
-<div class="pagination">
-  {{#if isFirstPage}}
-    Previous
-  {{else}}
-    {{#link-to (query-params page=prevPage)}}Previous{{/link-to}}
-  {{/if}}
-
-  {{#each pageRange as |num|}}
-    {{#link-to (query-params page=num)}}{{num}}{{/link-to}}
-  {{/each}}
-
-  {{#if isLastPage}}
-    Next
-  {{else}}
-    {{#link-to (query-params page=nextPage)}}Next{{/link-to}}
-  {{/if}}
-</div>
+{{pagination-numbers meta=model.meta}}

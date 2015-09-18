@@ -1,0 +1,35 @@
+{{#if display}}
+  <nav>
+    <ul class="pagination">
+      {{#if prevPage}}
+        <li>
+        {{#link-to (query-params page=prevPage)}}
+          <span aria-hidden="true">&laquo;</span>
+        {{/link-to}}
+        </li>
+      {{else}}
+        <li class="disabled">
+          <span aria-hidden="true">&laquo;</span>
+        </li>
+      {{/if}}
+
+      {{#each pageRange as |num|}}
+        <li class="{{if (is-equal meta.current-page num) 'active'}}">
+          {{#link-to (query-params page=num)}}{{num}}{{/link-to}}
+        </li>
+      {{/each}}
+      
+      {{#if nextPage}}
+        <li>
+          {{#link-to (query-params page=nextPage)}}
+            <span aria-hidden="true">&raquo;</span>
+          {{/link-to}}
+        </li>
+      {{else}}
+        <li class="disabled">
+          <span aria-hidden="true">&raquo;</span>
+        </li>
+      {{/if}}
+    </ul>
+  </nav>
+{{/if}}
