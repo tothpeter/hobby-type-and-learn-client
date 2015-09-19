@@ -14,13 +14,5 @@ export default Ember.Route.extend(CardsRouteMixin, {
     }
 
     return this.store.query('card', query);
-  },
-
-  afterModel: function() {
-    if (this.controllerFor(this.routeName).get('jquiDroppable') !== undefined) {
-      Ember.run.schedule('afterRender', this, function() {
-        this.controllerFor(this.routeName).get('jquiDroppable').contentUpdated();
-      });
-    }
   }
 });

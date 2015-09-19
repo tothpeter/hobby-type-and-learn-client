@@ -9,6 +9,14 @@ export default Ember.Mixin.create(PaginationRouteMixin, AuthenticatedRouteMixin,
     }
   },
 
+  afterModel: function() {
+    if (this.controller !== undefined) {
+      Ember.run.schedule('afterRender', this, function() {
+        this.controller.get('jquiDroppable').contentUpdated();
+      });
+    }
+  },
+
   actions: {
     createCard: function() {
       var controller = this.controllerFor('profile.cards.new'),
