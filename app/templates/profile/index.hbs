@@ -1,6 +1,6 @@
 <button {{action 'showModal' 'profile.cards.new' null 'profile.cards.new'}}>New card</button>
 
-{{#jqui-dropable drop="dropLabelOnCard" itemSelector=".list-group-item" actionReceiver=jquiDroppable}}
+{{#jqui-droppable drop="dropLabelOnCard" itemSelector=".list-group-item" actionReceiver=jquiDroppable}}
   <div class="list-group">
     {{#each model as |card|}}
       <div class="list-group-item" data-card-id="{{card.id}}">
@@ -11,5 +11,5 @@
       </div>
     {{/each}}
   </div>
-{{/jqui-dropable}}
+{{/jqui-droppable}}
 {{pagination-numbers meta=model.meta}}
