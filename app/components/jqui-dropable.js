@@ -4,7 +4,7 @@ export default Ember.Component.extend({
   setup: Ember.on('didInsertElement', function() {
     var _this = this;
 
-    this.$().find('.list-group-item').droppable({
+    this.$().find(this.get('itemSelector')).droppable({
       hoverClass: "ui-state-hover",
 
       drop: function(event, ui) {
