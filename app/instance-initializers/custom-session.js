@@ -44,6 +44,7 @@ function initialize(application) {
         })
         .fail(function() {
           Ember.run(function() {
+            setAuthCookie('', -1);
             reject();
           });
         });

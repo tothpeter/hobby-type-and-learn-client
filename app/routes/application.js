@@ -9,10 +9,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
             _this = this;
       
       if (!currentUserPayload) {
-        return this.session.fetchCurrentUser().then(
-        function() {
-          _this.session.logout();
-        },
+        return this.session.fetchCurrentUser().then(null,
         function() {
           _this.transitionTo('/');
         });
