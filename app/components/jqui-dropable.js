@@ -9,13 +9,15 @@ export default Ember.Component.extend({
   }.on('init'),
 
   contentUpdated: function() {
-    this.setup();
+    if (this.$() !== undefined) {
+      this.setup();
+    }
   },
 
   setup: Ember.on('didInsertElement', function() {
     var _this = this;
 
-    this.$().find(this.get('itemSelector')).droppable({
+    this.$(this.get('itemSelector')).droppable({
       hoverClass: "ui-state-hover",
 
       drop: function(event, ui) {
