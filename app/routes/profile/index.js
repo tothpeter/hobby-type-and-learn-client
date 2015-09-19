@@ -3,11 +3,7 @@ import CardsRouteMixin from 'type-and-learn-client/mixins/routes/cards';
 
 export default Ember.Route.extend(CardsRouteMixin, {
   model: function(params) {
-    var label = this.modelFor('profile.labels');
-    
-    var query = {
-      label_id: label.get('id')
-    };
+    var query = {};
 
     if(Ember.isPresent(params.page)) {
       query.page = params.page;

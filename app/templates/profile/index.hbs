@@ -1,0 +1,15 @@
+<button {{action 'showModal' 'profile.cards.new' null 'profile.cards.new'}}>New card</button>
+
+{{#jqui-dropable drop="dropLabelOnCard" itemSelector=".list-group-item"}}
+  <div class="list-group">
+    {{#each model as |card|}}
+      <div class="list-group-item" data-card-id="{{card.id}}">
+        <span {{action 'removeCard' card}} class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span>
+        <span {{action 'showModal' 'profile.cards.edit' card 'profile.cards.edit'}} class="btn btn-sm btn-primary">edit</span>
+        {{card.sideA}}
+        {{star-rating rating=card.proficiencyLevel on-click="updateCardRating" item=card classNames="pull-right"}}
+      </div>
+    {{/each}}
+  </div>
+{{/jqui-dropable}}
+{{pagination-numbers meta=model.meta}}

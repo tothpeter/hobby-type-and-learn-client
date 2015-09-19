@@ -4,7 +4,7 @@
       <button {{action 'showModal' 'profile.labels.new' null 'profile.labels.new'}} class="btn-add-new-label">New label</button>
       <div class="list-group">
         <div class="list-group-item">
-          {{#link-to 'profile.cards'}}All cards{{/link-to}}
+          {{#link-to 'profile.index'}}All cards{{/link-to}}
         </div>
         {{#jqui-dragable itemSelector=".list-group-item" helperTextSelector="a"}}
           {{#each session.currentUser.labels as |label|}}
