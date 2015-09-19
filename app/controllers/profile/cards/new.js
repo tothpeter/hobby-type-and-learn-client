@@ -5,7 +5,7 @@ export default Ember.Controller.extend(PostValidations, {
   model: {
     sideA: '',
     sideB: '',
-    proficiencyLevel: 0,
+    proficiencyLevel: 3,
     labels: []
   },
 

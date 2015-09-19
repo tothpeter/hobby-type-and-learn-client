@@ -46,6 +46,17 @@ export default Ember.Route.extend(PaginationRouteMixin, {
       });
     },
 
+    updateCardRating: function(params) {
+      var card = params.item;
+
+      card.set('proficiencyLevel', params.rating);
+
+      card.save().then(null,
+      function() {
+        card.rollbackAttributes();
+      });
+    },
+
     removeCard: function(card) {
       if (window.confirm('Are you sure, you want to delete this card?')) {
         var _this = this;
