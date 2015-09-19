@@ -8,6 +8,7 @@ export default Ember.Component.extend({
   maxRating:  5,
   item:       null,
   valuePath:  null,
+  disabled: false,
 
   stars: Ember.computed('rating', 'maxRating', function() {
     var rating = Math.round(this.get('rating'));
@@ -26,6 +27,8 @@ export default Ember.Component.extend({
 
   actions: {
     set: function(newRating) {
+
+      if (this.get('disabled')) { return; }
 
       if (this.get('valuePath') !== null) {
         Ember.set(this.get('item'), this.get('valuePath'), newRating);
