@@ -2,14 +2,18 @@
 <form {{action "authenticate" on="submit"}} id="form-login">
   <h4>Please Log In</h4>
   <div class="form-group">
-    {{input value=identification placeholder="E-mail" type="text" name="email" class="form-control"}}
+    {{input value=identification placeholder="E-mail" type="text" name="email" class="form-control" disabled=isLoading}}
   </div>
 
   <div class="form-group">
-    {{input value=password placeholder="Password" type="password" name="password" class="form-control"}}
+    {{input value=password placeholder="Password" type="password" name="password" class="form-control" disabled=isLoading}}
   </div>
 
   <div>
-    <button type="submit" class="btn btn-primary pull-right">Log in</button>
+    <div class="pull-left loading-message-wrapper {{if isLoading 'active'}}">
+      <div class="spinner-default spinner-small"></div>
+      <div class="loading-message">Loading, please wait...</div>
+    </div>
+    <button type="submit" class="btn btn-primary pull-right" disabled={{isLoading}}>Log in</button>
   </div>
 </form>
