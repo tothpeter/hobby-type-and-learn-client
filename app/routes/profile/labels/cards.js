@@ -19,12 +19,14 @@ export default Ember.Route.extend(PaginationRouteMixin, {
   actions: {
     createCard: function() {
       var controller = this.controllerFor('profile.cards.new'),
-          card = this.store.createRecord('card', controller.get('model'));
+          card = this.store.createRecord('card', controller.get('model')),
+          _this = this;
 
       card.set('user', this.get('session.currentUser'));
 
       card.save().then(function() {
         controller.successfulSave();
+        _this.refresh();
       },
       function(message) {
         controller.failedSave(message);
@@ -46,7 +48,10 @@ export default Ember.Route.extend(PaginationRouteMixin, {
 
     removeCard: function(card) {
       if (window.confirm('Are you sure, you want to delete this card?')) {
-        card.destroyRecord();
+        var _this = this;
+        card.destroyRecord().then(function() {
+          _this.refresh();
+        });
       }
     }
   }
