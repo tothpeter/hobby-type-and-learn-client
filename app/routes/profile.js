@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
+import $ from 'jquery';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   actions: {
@@ -35,6 +36,30 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         label.destroyRecord();
       }
       // TODO: redirect to profile if we stay on the deleted path
+    },
+
+    dropLabelOnCard: function(params) {
+      var label = this.store.peekRecord('label', $(params.ui.draggable).data('label-id')),
+          card = this.store.peekRecord('card', $(params.event.target).data('card-id')),
+          _this = this,
+          adapter = this.container.lookup('adapter:application');
+
+      $.ajax({
+        method: 'post',
+        url: adapter.buildURL() + '/label_cards',
+        data: { label_id: label.id, card_id: card.id },
+        beforeSend: function(request) {
+          request.setRequestHeader('Authorization', 'Token token="' + _this.get('session.content.secure.token') + '"');
+        },
+      })
+      .fail(function() {
+        Ember.run(function() {
+          label.get('cards').removeObject(card);
+          alert('Something went wrong, please try later.');
+        });
+      });
+
+      label.get('cards').pushObject(card);
     }
   }
 });

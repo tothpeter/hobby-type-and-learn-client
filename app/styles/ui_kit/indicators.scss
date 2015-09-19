@@ -48,3 +48,14 @@
     @include transform(rotate(359deg));
   }
 }
+
+
+.label-drag-helper {
+  padding: 2px 7px;
+  color: #fff;
+  background-color: #2a97ca;
+}
+
+.ui-state-hover {
+  background-color: #cae5f2;
+}
