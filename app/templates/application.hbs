@@ -1,14 +1,21 @@
 <nav class="navbar navbar-default" role="navigation">
-  <div class="collapse navbar-collapse">
-    <ul class="nav navbar-nav">
-      <li>{{link-to "Index" "application"}}</li>
-      <li>{{link-to "Cards" "profile"}}</li>
-    </ul>
-    {{#if session.isAuthenticated}}
-      Hi, {{session.currentUser.email}} <button {{action 'logout'}}>Logout</button>
-    {{else}}
-      {{#link-to "login"}}Login{{/link-to}}
-    {{/if}}
+  <div class="container">
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li>{{link-to "Index" "application"}}</li>
+        <li>{{link-to "Cards" "profile"}}</li>
+        <li>{{link-to "About" "about"}}</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          {{#if session.isAuthenticated}}
+            <a href="#" {{action 'logout'}}>Logout</a>
+          {{else}}
+            {{#link-to "login"}}Login{{/link-to}}
+          {{/if}}
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 

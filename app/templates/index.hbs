@@ -1,12 +1,4 @@
-{{#if session.isAuthenticated}}
-  Hi, {{session.currentUser.email}}
-  <br/>
-  You can't see this text unless you're logged in!
-  <br/>
-  Click this button to logout: 
-  <button {{action 'logout'}}>Logout</button>
-  <br/>
-  If you try to go to the
-  {{#link-to "login"}}Login{{/link-to}}
-  page, you should get redirected!
-{{/if}}
+<div class="container">
+  <h1>Welcome to Type and Learn</h1>
+  <p>The purpose of this lovely applications is to facilitate people in learning foreign languages.</p>
+</div>

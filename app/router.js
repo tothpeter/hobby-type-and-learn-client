@@ -6,6 +6,8 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('about');
+
   this.route('profile', function() {
     this.route('labels', {path: 'labels/:id'}, function() {
       this.route('cards');
