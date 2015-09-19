@@ -1,7 +1,14 @@
-# Type-and-learn-client
+# Type and Learn Client
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This project is an Ember CLI application, which is the frontend of my home project called Type and Learn.
+
+The backend is a rails API: https://github.com/tothpeter/type_and_learn_api
+
+There is a third app, that is in charge to bootstrap the whole project in production: https://github.com/tothpeter/type_and_learn_web
+
+The final app is live here: http://type-and-learn.kalina.tech
+
+A broader description is on its way...
 
 ## Prerequisites
 
