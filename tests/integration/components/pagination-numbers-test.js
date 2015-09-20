@@ -7,21 +7,13 @@ moduleForComponent('pagination-numbers', 'Integration | Component | pagination n
 });
 
 test('it renders', function(assert) {
-  assert.expect(2);
+  assert.expect(3);
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  this.set('meta', { 'current-page':1, 'next-page':2, 'prev-page':null, 'total-pages':4, 'total-count':8 });
 
-  this.render(hbs`{{pagination-numbers}}`);
+  this.render(hbs`{{pagination-numbers meta=meta}}`);
 
-  assert.equal(this.$().text(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#pagination-numbers}}
-      template block text
-    {{/pagination-numbers}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('li').eq(0).hasClass('disabled'), true);
+  assert.equal(this.$('li').eq(1).hasClass('active'), true);
+  assert.equal(/1234/.test(this.$().text().replace(/\s/g, '')), true);
 });
