@@ -6,12 +6,17 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   actions: {
     createLabel: function() {
       var controller = this.controllerFor('profile.labels.new'),
-          label = this.store.createRecord('label', controller.get('model'));
+          label = this.store.createRecord('label', controller.get('model')),
+          _this = this;
 
       // label.set('position', this.get('session.currentUser.labels.length') + 1);
       
       label.save().then(function() {
         controller.successfulSave();
+
+        Ember.run.schedule('afterRender', this, function() {
+          _this.controller.get('jquiDragable').contentUpdated();
+        });
       },
       function(message) {
         controller.failedSave(message);

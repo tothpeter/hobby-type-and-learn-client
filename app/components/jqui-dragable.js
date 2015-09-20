@@ -1,6 +1,19 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+
+  _inbound_actions_setup: function() {
+    Ember.run.schedule('afterRender', this, function() {
+      this.set('actionReceiver', this);
+    });
+  }.on('init'),
+
+  contentUpdated: function() {
+    if (this.$() !== undefined) {
+      this.setup();
+    }
+  },
+
   setup: Ember.on('didInsertElement', function() {
     var _this = this;
 
