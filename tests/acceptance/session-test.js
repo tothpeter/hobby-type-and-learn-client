@@ -24,6 +24,12 @@ test('simple login', function(assert) {
 
       return [200, {"Content-Type": "application/json"}, JSON.stringify(expectedResponseData)];
     });
+
+    this.get('cards', function() {
+      var expectedResponseData = {"data":[{"id":"65","type":"cards","attributes":{"side-a":"aaaaaa","side-b":"a","proficiency-level":3},"relationships":{"user":{"data":{"type":"users","id":"2"}},"labels":{"data":[]}}},{"id":"63","type":"cards","attributes":{"side-a":"a","side-b":"a","proficiency-level":2},"relationships":{"user":{"data":{"type":"users","id":"2"}},"labels":{"data":[{"type":"labels","id":"2"},{"type":"labels","id":"1"}]}}}],"links":{"self":"http://type-and-learn-api.dev/cards?page%5Bnumber%5D=1\u0026page%5Bsize%5D=2","next":"http://type-and-learn-api.dev/cards?page%5Bnumber%5D=2\u0026page%5Bsize%5D=2","last":"http://type-and-learn-api.dev/cards?page%5Bnumber%5D=4\u0026page%5Bsize%5D=2"},"meta":{"current-page":1,"next-page":2,"prev-page":null,"total-pages":4,"total-count":8}};
+
+      return [200, {"Content-Type": "application/json"}, JSON.stringify(expectedResponseData)];
+    });
   });
 
   visit('/profile');
