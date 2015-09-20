@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-function initialize(application) {
+export function initialize(application) {
   var session = application.container.lookup('simple-auth-session:main');
 
   session.reopen({
@@ -79,5 +79,6 @@ function initialize(application) {
 }
 
 export default {
+  name: 'custom-session',
   initialize: initialize
 };
