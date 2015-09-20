@@ -2,13 +2,21 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: 'div',
-  classNames: ['rating-panel'],
+  classNames: ['rating-panel clearfix'],
 
   rating:     0,
   maxRating:  5,
   item:       null,
   valuePath:  null,
   disabled: false,
+
+  defaultDescription: [
+    'Bad',
+    'Poor',
+    'Regular',
+    'Quite good',
+    'Excellent',
+  ],
 
   stars: Ember.computed('rating', 'maxRating', function() {
     var rating = Math.round(this.get('rating'));
@@ -20,7 +28,7 @@ export default Ember.Component.extend({
   starRange: function(start, end, type) {
     var starsData = [];
     for (var i = start; i <= end; i++) {
-      starsData.push({ rating: i, full: type === 'full' });
+      starsData.push({ rating: i, full: type === 'full', description: this.get('defaultDescription')[i-1] });
     }
     return starsData;
   },
