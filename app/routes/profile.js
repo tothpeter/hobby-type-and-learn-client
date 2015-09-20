@@ -15,7 +15,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         controller.successfulSave();
 
         Ember.run.schedule('afterRender', this, function() {
-          _this.controller.get('jquiDragable').contentUpdated();
+          _this.controller.get('jquiDraggable').contentUpdated();
         });
       },
       function(message) {

@@ -2,7 +2,7 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 
-moduleForComponent('jqui-dragable', 'Integration | Component | jqui dragable', {
+moduleForComponent('jqui-draggable', 'Integration | Component | jqui draggable', {
   integration: true
 });
 
@@ -12,15 +12,15 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{jqui-dragable}}`);
+  this.render(hbs`{{jqui-draggable}}`);
 
   assert.equal(this.$().text(), '');
 
   // Template block usage:
   this.render(hbs`
-    {{#jqui-dragable}}
+    {{#jqui-draggable}}
       template block text
-    {{/jqui-dragable}}
+    {{/jqui-draggable}}
   `);
 
   assert.equal(this.$().text().trim(), 'template block text');
