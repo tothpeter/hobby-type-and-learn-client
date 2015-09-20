@@ -30,8 +30,15 @@ export default Ember.Controller.extend(LabelValidations, {
     }, 0);
   },
 
-  failedSave: function(message) {
+  failedSave: function(error) {
     this.set('isSaving', false);
-    alert('Error: ' + message);
+    
+    if (error.errors.status === 422) {
+      // TODO handle validation errors
+      return false;
+    }
+    // alert('Error: ' + error);
+
+    this.send('error', error);
   }
 });

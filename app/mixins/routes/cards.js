@@ -29,8 +29,8 @@ export default Ember.Mixin.create(PaginationRouteMixin, AuthenticatedRouteMixin,
         controller.successfulSave();
         _this.refresh();
       },
-      function(message) {
-        controller.failedSave(message);
+      function(error) {
+        controller.failedSave(error);
       });
     },
 
@@ -41,9 +41,9 @@ export default Ember.Mixin.create(PaginationRouteMixin, AuthenticatedRouteMixin,
       card.save().then(function() {
         controller.successfulSave();
       },
-      function(message) {
+      function(error) {
         card.rollbackAttributes();
-        controller.failedSave(message);
+        controller.failedSave(error);
       });
     },
 

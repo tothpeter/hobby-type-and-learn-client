@@ -30,9 +30,16 @@ export default Ember.Controller.extend(PostValidations, {
     }, 0);
   },
 
-  failedSave: function(message) {
+  failedSave: function(error) {
     this.set('isSaving', false);
-    alert('Error: ' + message);
+    
+    if (error.errors.status === 422) {
+      // TODO handle validation errors
+      return false;
+    }
+    // alert('Error: ' + error);
+
+    this.send('error', error);
   },
 
   selectedLabels: Ember.computed('session.currentUser.labels', 'model.labels', function() {

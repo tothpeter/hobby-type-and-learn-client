@@ -18,8 +18,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
           _this.controller.get('jquiDraggable').contentUpdated();
         });
       },
-      function(message) {
-        controller.failedSave(message);
+      function(error) {
+        controller.failedSave(error);
       });
     },
 
@@ -30,9 +30,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       label.save().then(function() {
         controller.successfulSave();
       },
-      function(message) {
+      function(error) {
         label.rollbackAttributes();
-        controller.failedSave(message);
+        controller.failedSave(error);
       });
     },
 
