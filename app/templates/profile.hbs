@@ -1,18 +1,21 @@
-<div class="row">
+<div class="row" id="page-profile">
   <div class="col-lg-2 col-md-2 col-sm-2">
     <button {{action 'showModal' 'profile.labels.new' null 'profile.labels.new'}} class="btn-add-new-label">New label</button>
-    <div class="list-group">
+    <div class="list-group list-group-labels">
       <div class="list-group-item">
         {{#link-to 'profile.index'}}All cards{{/link-to}}
       </div>
       {{#jqui-draggable itemSelector=".list-group-item" helperTextSelector="a" actionReceiver=jquiDraggable}}
         {{#each labels as |label|}}
           <div class="list-group-item" data-label-id="{{label.id}}">
-            <span {{action 'removeLabel' label}} class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span>
-            <span {{action 'showModal' 'profile.labels.edit' label 'profile.labels.edit'}} class="btn btn-sm btn-primary btn-edit-label">edit</span>
             {{#link-to 'profile.labels.cards' label}}
               {{label.title}}
             {{/link-to}}
+            
+            <div class="edit-button-wrapper">
+              <span {{action 'showModal' 'profile.labels.edit' label 'profile.labels.edit'}} class="btn-cog"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></span>
+              <span {{action 'removeLabel' label}} class="btn-delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></span>
+            </div>
           </div>
         {{/each}}
       {{/jqui-draggable}}

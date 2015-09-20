@@ -1,0 +1,64 @@
+#page-profile {
+  .list-group-labels {
+    .list-group-item {
+      position: relative;
+      padding: 0;
+      border: none;
+      
+      a {
+        display: block;
+        padding: 10px 15px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        color: #5a6e90;
+
+        border: 1px solid #ddd;
+      }
+
+      .active {
+        color: #fff;
+        background-color: #337ab7;
+        border-color: #337ab7;
+
+        &+ .edit-button-wrapper {
+          color: #fff;
+
+          .btn-cog,
+          .btn-delete {
+            color: #fff;
+          }
+        }
+      }
+
+      &:hover a {
+        padding-right: 50px;
+      }
+
+      &:hover .edit-button-wrapper {
+        display: block;
+      }
+    }
+
+    .edit-button-wrapper {
+      position: absolute;
+      top: 13px;
+      right: 10px;
+      display: none;
+
+      .btn-cog {
+        margin-right: 6px;
+        color: #5a6e90;
+      }
+
+      .btn-delete {
+        color: #cc6257;
+      }
+
+      span {
+        float: left;
+        cursor: pointer;
+      }
+    }
+  }
+}
