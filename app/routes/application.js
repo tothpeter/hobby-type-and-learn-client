@@ -20,13 +20,13 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   },
 
   actions: {
-    error: function(error, transition) {
+    error: function(error) {
 
       if (error && error.errors.status === 401) {
         // TODO: show login modal
         // After solve, redirect to the wanted route if there was any:
         // this.transitionTo(transition.targetName);
-        return this.transitionTo('login');
+        this.transitionTo('login');
         return false;
       }
       
