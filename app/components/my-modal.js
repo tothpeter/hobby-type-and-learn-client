@@ -12,8 +12,10 @@ export default Ember.Component.extend({
 
   show: function() {
     this.$('.modal').modal()
-    .on('hidden.bs.modal', function() {
-      this.sendAction('close');
+    .on('hidden.bs.modal', function(event) {
+      if (Ember.$(event.currentTarget).data('fire-close-action') !== false) {
+        this.sendAction('close');
+      }
     }.bind(this))
     .on('shown.bs.modal', function () {
       Ember.$(this).find('input').eq(0).focus();

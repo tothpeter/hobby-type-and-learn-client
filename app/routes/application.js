@@ -42,7 +42,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       });
     },
     removeModal: function() {
-      Ember.$('.modal').modal('hide');
+      Ember.$('.modal').data('fire-close-action', false).modal('hide');
       this.disconnectOutlet({
         outlet: 'modal',
         parentView: 'application'
