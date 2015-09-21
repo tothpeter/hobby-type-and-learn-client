@@ -28,11 +28,9 @@ export default Ember.Controller.extend(LabelValidations, {
 
     this.set('model.title', '');
 
-    var _this = this;
-
-    Ember.run.later(function() {
-      _this.send('removeModal');
-    }, 0);
+    Ember.run.schedule('afterRender', this, function(){
+      this.send('removeModal');
+    });
   },
 
   failedSave: function(error) {

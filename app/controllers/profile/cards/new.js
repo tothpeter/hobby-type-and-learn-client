@@ -38,11 +38,9 @@ export default Ember.Controller.extend(PostValidations, {
     this.set('model.proficiency_level', 0);
     this.set('model.labels', []);
 
-    var _this = this;
-
-    Ember.run.later(function() {
-      _this.send('removeModal');
-    }, 0);
+    Ember.run.schedule('afterRender', this, function(){
+      this.send('removeModal');
+    });
   },
 
   failedSave: function(error) {
