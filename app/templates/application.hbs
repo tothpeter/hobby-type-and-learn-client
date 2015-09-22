@@ -4,6 +4,9 @@
       {{link-to "Type and Learn" "index" class="navbar-brand no-hover"}}
       <ul class="nav navbar-nav">
         <li>{{link-to "Index" "index"}}</li>
+        {{#if session.isAuthenticated}}
+          <li>{{link-to "Import" "import"}}</li>
+        {{/if}}
         <li>{{link-to "Cards" "profile"}}</li>
         <li>{{link-to "About" "about"}}</li>
       </ul>

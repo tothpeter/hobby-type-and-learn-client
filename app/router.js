@@ -13,7 +13,9 @@ Router.map(function() {
       this.route('cards');
     });
   });
+
   this.route('login');
+  this.route('import');
 });
 
 export default Router;
