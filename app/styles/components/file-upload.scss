@@ -1,0 +1,24 @@
+.file-upload-dropzone {
+  max-width: 500px;
+  padding: 20px 30px;
+  border-radius: 10px;
+  border: 2px dashed #0087F7;
+  text-align: center;
+  cursor: pointer;
+  color: #646C7F;
+
+  @include transition(all .3s);
+
+  &.dz-drag-hover {
+    background-color: #e1e7ec;
+  }
+
+  .dz-message {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .dz-description {
+    margin-top: 10px;
+  }
+}
