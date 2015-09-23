@@ -37,7 +37,7 @@ test('visiting /profile', function(assert) {
   andThen(function() {
     assert.equal(currentURL(), '/profile');
     assert.equal(find('.list-group-item:contains("label 2")').length, 1, "Displays existing label in the list");
-    assert.equal(find('.list-group-item.ui-droppable').length, 2, "Displays the first 2 cards of all on the right");
+    assert.equal(find('.card-list-item.ui-droppable').length, 2, "Displays the first 2 cards of all on the right");
   });
 
 });
