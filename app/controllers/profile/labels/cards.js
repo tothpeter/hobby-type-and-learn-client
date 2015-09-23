@@ -9,7 +9,8 @@ export default Ember.Controller.extend({
   },
 
   sortBy: null,
-  sortOrder: null,
+  page: 1,
+  sortOrder: 'desc',
 
   actions: {
     changeSort: function(column) {
@@ -23,11 +24,8 @@ export default Ember.Controller.extend({
           order = 'asc';
         }
         else if(this.get('sortOrder') === 'asc'){
-          order = null;
-          column = null;
-        }
-        else {
           order = 'desc';
+          column = null;
         }
       }
       
