@@ -66,8 +66,14 @@ export default Ember.Mixin.create(PaginationRouteMixin, AuthenticatedRouteMixin,
 
     removeCard: function(card) {
       if (window.confirm('Are you sure, you want to delete this card?')) {
-        var _this = this;
+        var _this = this,
+            lastCard = this.get('model.length') === 1;
+        
         card.destroyRecord().then(function() {
+          if (lastCard && _this.controller.get('page') > 1) {
+            _this.controller.set('page', _this.controller.get('page') - 1);
+          }
+
           _this.refresh();
         });
       }
