@@ -1,15 +1,36 @@
-<button {{action 'showModal' 'profile.cards.new' null 'profile.cards.new'}}>New card</button>
-
-{{#jqui-droppable drop="dropLabelOnCard" itemSelector=".list-group-item" actionReceiver=jquiDroppable}}
-  <div class="list-group">
-    {{#each model as |card|}}
-      <div class="list-group-item" data-card-id="{{card.id}}">
-        <span {{action 'removeCard' card}} class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span>
-        <span {{action 'showModal' 'profile.cards.edit' card 'profile.cards.edit'}} class="btn btn-sm btn-primary">edit</span>
-        {{card.sideA}}
-        {{star-rating rating=card.proficiencyLevel on-click="updateCardRating" item=card classNames="pull-right"}}
-      </div>
-    {{/each}}
-  </div>
-{{/jqui-droppable}}
-{{pagination-numbers meta=model.meta}}
+<div id="page-cards">
+  <button {{action 'showModal' 'profile.cards.new' null 'profile.cards.new'}}>New card</button>
+  
+  {{#jqui-droppable drop="dropLabelOnCard" itemSelector=".card-list-item" actionReceiver=jquiDroppable}}
+    <table class="table table-striped table-card-list">
+      <thead>
+        <tr>
+          <th width="60"></th>
+          <th>Side A</th>
+          <th>Side B</th>
+          <th class="knowledge-level-header">Knowledge Level</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |card|}}
+          <tr class="card-list-item" data-card-id="{{card.id}}">
+            <td class="edit-icons">
+              <span class="glyphicon glyphicon-remove" {{action 'removeCard' card}}></span>
+              <span class="glyphicon glyphicon-pencil" {{action 'showModal' 'profile.cards.edit' card 'profile.cards.edit'}}></span>
+            </td>
+            <td>
+              {{card.sideA}}
+            </td>
+            <td>
+              {{card.sideB}}
+            </td>
+            <td>
+              {{star-rating rating=card.proficiencyLevel on-click="updateCardRating" item=card classNames="pull-right"}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{/jqui-droppable}}
+  {{pagination-numbers meta=model.meta}}
+</div>
