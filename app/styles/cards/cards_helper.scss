@@ -1,7 +1,16 @@
 .table-card-list {
+  .header-wrapper {
+    position: relative;
+    cursor: pointer;
+  }
+
   .knowledge-level-header {
     text-align: right;
     width: 140px;
+
+    .header-wrapper {
+      display: inline-block;
+    }
   }
 
   .edit-icons {
@@ -12,5 +21,12 @@
       cursor: pointer;
       float: left;
     }
+  }
+
+  .order-indicator {
+    position: absolute;
+    top: 4px;
+    left: -14px;
+    font-size: 10px;
   }
 }

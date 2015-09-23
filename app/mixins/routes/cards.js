@@ -6,6 +6,12 @@ export default Ember.Mixin.create(PaginationRouteMixin, AuthenticatedRouteMixin,
   queryParams: {
     page: {
       refreshModel: true
+    },
+    sortBy: {
+      refreshModel: true
+    },
+    sortOrder: {
+      refreshModel: true
     }
   },
 
