@@ -19,6 +19,10 @@ export function initialize(application) {
       setAuthCookie(this.get('content.secure.token'), 365);
     },
 
+    authorizationHeader: Ember.computed('content.secure.token', function() {
+      return 'Token token="%@"'.fmt(this.get('content.secure.token'));
+    }),
+
     fetchCurrentUser: function() {
       const _this = this,
             adapter = application.container.lookup('adapter:application');
@@ -27,7 +31,7 @@ export function initialize(application) {
         Ember.$.ajax({
           url: adapter.buildURL() + '/current_user',
           beforeSend: function(request) {
-            request.setRequestHeader('Authorization', 'Token token="' + _this.get('content.secure.token') + '"');
+            request.setRequestHeader('Authorization', _this.get('authorizationHeader'));
           },
         })
         .done(function(currentUser) {
