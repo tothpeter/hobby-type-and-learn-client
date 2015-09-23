@@ -38,7 +38,14 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     removeLabel: function(label) {
       if (window.confirm('Are you sure, you want to delete this label?')) {
-        label.destroyRecord();
+        var moveToAllCards = this.controllerFor('profile.labels').get('model.id') === label.id,
+            _this = this;
+
+        label.destroyRecord().then(function() {
+          if (moveToAllCards) {
+            _this.transitionTo('profile');
+          }
+        });
       }
       // TODO: redirect to profile if we stay on the deleted path
     },
