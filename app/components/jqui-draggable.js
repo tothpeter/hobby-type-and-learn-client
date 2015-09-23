@@ -21,7 +21,7 @@ export default Ember.Component.extend({
       appendTo: 'body',
       cursorAt: {
         left: -14,
-        top: -1
+        top: 12,  
       },
       helper: function() {
         return '<div class="label-drag-helper">' + Ember.$(this).find(_this.get('helperTextSelector')).text() + '</div>';
