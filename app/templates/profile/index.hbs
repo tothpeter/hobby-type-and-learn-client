@@ -6,9 +6,47 @@
       <thead>
         <tr>
           <th width="60"></th>
-          <th>Side A</th>
-          <th>Side B</th>
-          <th class="knowledge-level-header">Knowledge Level</th>
+          <th>
+            <div class="header-wrapper" {{action "changeSort" "side_a"}}>
+              Side A
+              {{#if (is-equal sortBy "side_a")}}
+                <span class="order-indicator">
+                  {{#if (is-equal sortOrder "desc")}}
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                  {{else}}
+                    <span class="glyphicon glyphicon-chevron-up"></span>
+                  {{/if}}
+                </span>
+              {{/if}}
+            </div>
+          </th>
+          <th>
+            <div class="header-wrapper" {{action "changeSort" "side_b"}}>
+              Side B
+              {{#if (is-equal sortBy "side_b")}}
+                <span class="order-indicator">
+                  {{#if (is-equal sortOrder "desc")}}
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                  {{else}}
+                    <span class="glyphicon glyphicon-chevron-up"></span>
+                  {{/if}}
+                </span>
+              {{/if}}
+            </div></th>
+          <th class="knowledge-level-header">
+            <div class="header-wrapper" {{action "changeSort" "proficiency_level"}}>
+              Knowledge Level
+              {{#if (is-equal sortBy "proficiency_level")}}
+                <span class="order-indicator">
+                  {{#if (is-equal sortOrder "desc")}}
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                  {{else}}
+                    <span class="glyphicon glyphicon-chevron-up"></span>
+                  {{/if}}
+                </span>
+              {{/if}}
+            </div>
+          </th>
         </tr>
       </thead>
       <tbody>
