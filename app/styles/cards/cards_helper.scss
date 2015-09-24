@@ -4,6 +4,15 @@
     cursor: pointer;
   }
 
+  .first-column {
+    width: 60px;
+    text-align: center;
+
+    .order-indicator {
+      left: 4px;
+    }
+  }
+
   .knowledge-level-header {
     text-align: right;
     width: 140px;

@@ -8,7 +8,7 @@ export default Ember.Mixin.create({
     page: 'page'
   },
 
-  sortBy: null,
+  sortBy: 'created_at',
   page: 1,
   sortOrder: 'desc',
 
@@ -23,9 +23,8 @@ export default Ember.Mixin.create({
         if (this.get('sortOrder') === 'desc') {
           order = 'asc';
         }
-        else if(this.get('sortOrder') === 'asc'){
+        else {
           order = 'desc';
-          column = null;
         }
       }
       

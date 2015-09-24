@@ -5,7 +5,20 @@
     <table class="table table-striped table-card-list">
       <thead>
         <tr class="no-select">
-          <th width="60"></th>
+          <th class="first-column">
+            <div class="header-wrapper" {{action "changeSort" "created_at"}}>
+              #
+              {{#if (is-equal sortBy "created_at")}}
+                <span class="order-indicator">
+                  {{#if (is-equal sortOrder "desc")}}
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                  {{else}}
+                    <span class="glyphicon glyphicon-chevron-up"></span>
+                  {{/if}}
+                </span>
+              {{/if}}
+            </div>
+          </th>
           <th>
             <div class="header-wrapper" {{action "changeSort" "side_a"}}>
               Side A
