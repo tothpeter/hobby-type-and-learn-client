@@ -1,4 +1,55 @@
-{{#file-upload url=postImportUrl success='uploaded' acceptedFiles=".csv,.xls,.xlsx" referenceToOutside=this}}
-  <div class="dz-message">Dropa a file here or click to upload.</div>
-  <div class="dz-description">You can import from .csv .xls or .xlsx. Just make sure it contains the columns in this order: sida a, side b, knowledge level (1-5).</div>
-{{/file-upload}}
+<div id="page-import">
+  <h1>Import labels</h1>
+
+  Separator:
+  Tab: 
+  {{radio-button
+      value="tab"
+      groupValue=separatorType }}
+  Other: 
+  {{#radio-button
+      value="other"
+      groupValue=separatorType }}
+      {{input value=separatorOther}}
+  {{/radio-button}}
+  
+  
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6">
+      {{textarea value=importText}}
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6">
+      <h3>Preview</h3>
+      <table class="table table-striped table-card-list">
+        <thead>
+          <tr>
+            <th>Side A</th>
+            <th>Side B</th>
+            <th class="knowledge-level-header">Knowledge Level</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each cards as |card|}}
+            <tr class="card-list-item">
+              <td>
+                {{card.sideA}}
+              </td>
+              <td>
+                {{card.sideB}}
+              </td>
+              <td>
+                {{star-rating rating=card.proficiencyLevel classNames="pull-right" item=card}}
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <button class="btn btn-primary pull-right" {{action "import"}}><span class="glyphicon glyphicon-cloud-upload"></span> Import</button>
+    </div>
+  </div>
+  
+  {{#file-upload url=postImportUrl success='uploaded' acceptedFiles=".csv,.xls,.xlsx" referenceToOutside=this}}
+    <div class="dz-message">Dropa a file here or click to upload.</div>
+    <div class="dz-description">You can import from .csv .xls or .xlsx. Just make sure it contains the columns in this order: sida a, side b, knowledge level (1-5).</div>
+  {{/file-upload}}
+</div>
