@@ -1,4 +1,27 @@
 #page-import {
+  h1 {
+    margin-bottom: 30px;
+  }
+
+  .nav-tabs {
+    margin-bottom: 15px;
+  }
+
+  h3 {
+    margin-top: 0;
+  }
+
+  .copy-paste-subhead {
+    margin-bottom: 10px;
+
+    &+table {
+      margin-bottom: 0;
+      th {
+        border: none;
+      }
+    }
+  }
+
   textarea {
     width: 100%;
     max-width: 100%;
