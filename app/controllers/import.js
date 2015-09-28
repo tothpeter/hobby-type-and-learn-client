@@ -2,6 +2,8 @@ import Ember from 'ember';
 import PostValidations from 'type-and-learn-client/mixins/validations/post';
 
 export default Ember.Controller.extend(PostValidations, {
+  socketEvents: Ember.inject.service(),
+
   postImportUrl: Ember.computed(function() {
     var adapter = this.container.lookup('adapter:application');
     return adapter.buildURL() + '/cards/import';
@@ -73,6 +75,8 @@ export default Ember.Controller.extend(PostValidations, {
         else {       
           _this.set('importText', '');
         }
+
+        _this.get('socketEvents').subscribe('cards.import.finished', {user_id: _this.get('session.currentUser.id') * 1});
 
         alert('We got your request, it is now in our processing que.');
       })
