@@ -1,35 +1,37 @@
 import Ember from 'ember';
 
 export default Ember.Service.extend({
-  socketService: Ember.inject.service('websockets'),
-
   socket: null,
 
   subscribe: function(event, eventParams = {}) {
 
-    if (this.get('socket') === null) {
-      this.set('socket', this.get('socketService').socketFor('ws://localhost:9292/'));
-      this.get('socket').on('message', this.messageHandler, this);
-    }
-
-    var message = {
+    var _this = this,
+        message = {
       "type":"subscribe",
       "event": eventParams
     };
 
     message.event['type'] = event;
 
-    this.get('socket').on('open', function() {
-      this.send(JSON.stringify(message));
-    }, this.get('socket'));
+    if (this.get('socket') === null) {
+      this.set('socket', new WebSocket('ws://localhost:9292'));
+    }
+
+    this.get('socket').onopen = function() {
+      _this.get('socket').send(JSON.stringify(message));
+    };
+    
+    this.get('socket').onmessage = function(event) {
+      _this.messageHandler(event.data);
+    };
 
   },
 
-  messageHandler: function(event) {
-    var response = JSON.parse(event.data);
+  messageHandler: function(message) {
+    var message = JSON.parse(event.data);
 
-    if (response.type === 'event') {
-      this.eventHandler(response.event)
+    if (message.type === 'event') {
+      this.eventHandler(message.event);
     }
   },
 
