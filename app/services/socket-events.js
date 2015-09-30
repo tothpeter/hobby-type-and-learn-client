@@ -2,6 +2,7 @@ import Ember from 'ember';
 import config from '../config/environment';
 
 export default Ember.Service.extend({
+  notify: Ember.inject.service(),
   socket: null,
 
   subscribe: function(event, eventParams = {}) {
@@ -50,7 +51,10 @@ export default Ember.Service.extend({
   },
 
   cardsImportFinished: function() {
-    alert('Your card import has been finished.');
+    this.get('notify').success('Your card import has been finished.', {
+      closeAfter: null
+    });
+
     this.get('socket').close();
     this.set('socket', null);
   }
