@@ -22,12 +22,12 @@ export default Ember.Service.extend({
     };
     
     this.get('socket').onmessage = function(event) {
-      _this.messageHandler(event.data);
+      _this.messageHandler(event);
     };
 
   },
 
-  messageHandler: function(message) {
+  messageHandler: function(event) {
     var message = JSON.parse(event.data);
 
     if (message.type === 'event') {
@@ -36,10 +36,21 @@ export default Ember.Service.extend({
   },
 
   eventHandler: function(event) {
-    if (event.type === 'cards.import.finished') {
-      alert('Your card import has been finished.');
-      this.get('socket').close();
-      this.set('socket', null);
+    var eventHandlers = {
+      'cards.import.finished': 'cardsImportFinished'
+    };
+
+    if (eventHandlers[event.type] === undefined) {
+      console.log('Unhandled even has come back from server');
     }
+    else {
+      this[eventHandlers[event.type]]();
+    }
+  },
+
+  cardsImportFinished: function() {
+    alert('Your card import has been finished.');
+    this.get('socket').close();
+    this.set('socket', null);
   }
 });
