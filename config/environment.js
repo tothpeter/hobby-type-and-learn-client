@@ -45,6 +45,7 @@ module.exports = function(environment) {
     ENV.contentSecurityPolicy['script-src'] = "'self' 'unsafe-eval'";
 
     ENV['simple-auth'].crossOriginWhitelist = [ENV.apiHost];
+    ENV.websocketHost = 'ws://localhost:9292';
   }
 
   if (environment === 'test') {
@@ -68,6 +69,7 @@ module.exports = function(environment) {
     ENV.apiHost = 'http://api.type-and-learn.kalina.tech';
 
     ENV['simple-auth'].crossOriginWhitelist = [ENV.apiHost];
+    ENV.websocketHost = 'ws://websockets.type-and-learn.kalina.tech';
   }
 
   ENV['simple-auth-devise'] = {

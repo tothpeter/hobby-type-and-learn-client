@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import config from '../config/environment';
 
 export default Ember.Service.extend({
   socket: null,
@@ -14,7 +15,7 @@ export default Ember.Service.extend({
     message.event['type'] = event;
 
     if (this.get('socket') === null) {
-      this.set('socket', new WebSocket('ws://localhost:9292'));
+      this.set('socket', new WebSocket(config.websocketHost));
     }
 
     this.get('socket').onopen = function() {
