@@ -41,7 +41,7 @@
             </thead>
             <tbody>
               {{#each cardsFromText as |card|}}
-                <tr class="card-list-item">
+                <tr class="card-list-item {{if card.invalid 'invalid-row'}}">
                   <td>
                     {{card.sideA}}
                   </td>
@@ -94,7 +94,7 @@
             </thead>
             <tbody>
               {{#each cardsFromFile as |card|}}
-                <tr class="card-list-item">
+                <tr class="card-list-item {{if card.invalid 'invalid-row'}}">
                   <td>
                     {{card.sideA}}
                   </td>

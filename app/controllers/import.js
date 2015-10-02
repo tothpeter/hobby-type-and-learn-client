@@ -62,16 +62,31 @@ export default Ember.Controller.extend(PostValidations, {
     }
 
     var lines = importText.split('\n'),
-        line = '';
+        line = '',
+        card;
 
     for (var i = 0, len = lines.length; i < len; i++) {
       line = lines[i].split(this.get('separator'));
-      
-      cards.push({
+
+      card = {
         sideA: line[0],
         sideB: line[1],
-        proficiencyLevel: line[2]
-      });
+        proficiencyLevel: line[2] || 0
+      };
+
+      if (card.proficiencyLevel > 5) {
+        card.proficiencyLevel = 5;
+      }
+
+      if (card.proficiencyLevel < 0) {
+        card.proficiencyLevel = 0;
+      }
+
+      if (Ember.isEmpty(card.sideA) || Ember.isEmpty(card.sideB)) {
+        card.invalid = true;
+      }
+
+      cards.push(card);
     }
 
     return cards;
@@ -81,18 +96,43 @@ export default Ember.Controller.extend(PostValidations, {
 
   actions: {
     uploaded: function(file, response /*, xhrEvent*/) {
-      this.set('cardsFromFile', response.cards);
+      var cards = response.cards;
+      
+      for (var i = 0, len = cards.length; i < len; i++) {
+        
+        if (cards[i].proficiencyLevel > 5) {
+          cards[i].proficiencyLevel = 5;
+        }
+
+        if (cards[i].proficiencyLevel < 0) {
+          cards[i].proficiencyLevel = 0;
+        }
+
+        if (Ember.isEmpty(cards[i].sideA) || Ember.isEmpty(cards[i].sideB)) {
+          cards[i].invalid = true;
+        }
+      }
+
+      this.set('cardsFromFile', cards);
     },
 
     import: function(cardsType) {
-      var _this = this;
+      var _this = this,
+          cards = this.get(cardsType).toArray(),
+          cardsToSave = [];
+
+      for(var i = cards.length; i--;){
+        if (!cards[i].invalid) {
+          cardsToSave.push(cards[i])
+        }
+      }
 
       Ember.$.ajax({
         url: this.get('postImportUrl'),
         type: 'POST',
         contentType: "application/json; charset=utf-8",
         dataType: 'JSON',
-        data: JSON.stringify({cards: this.get(cardsType).toArray()}),
+        data: JSON.stringify({cards: cardsToSave}),
       })
       .done(function() {
         if (cardsType === 'cardsFromFile') {
