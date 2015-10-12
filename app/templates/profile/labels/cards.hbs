@@ -1,7 +1,7 @@
 <div id="page-label-cards">
   <button {{action 'showModal' 'profile.cards.new' null 'profile.cards.new'}}>New card</button>
   
-  {{#jqui-droppable drop="dropLabelOnCard" itemSelector=".list-group-item" actionReceiver=jquiDroppable}}
+  {{#jqui-droppable drop="dropLabelOnCard" itemSelector=".list-group-card-item" actionReceiver=jquiDroppable}}
     <table class="table table-striped table-card-list">
       <thead>
         <tr class="no-select">
@@ -64,7 +64,7 @@
       </thead>
       <tbody>
         {{#each model as |card|}}
-          <tr class="list-group-item2" data-card-id="{{card.id}}">
+          <tr class="list-group-card-item" data-card-id="{{card.id}}">
             <td class="edit-icons">
               <span class="glyphicon glyphicon-remove" {{action 'removeCard' card}}></span>
               <span class="glyphicon glyphicon-pencil" {{action 'showModal' 'profile.cards.edit' card 'profile.cards.edit'}}></span>
