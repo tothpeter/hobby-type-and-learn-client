@@ -1,5 +1,7 @@
 # Type and Learn Client
 
+[The main project page](https://github.com/tothpeter/type_and_learn)
+
 This project is an Ember CLI application, which is the frontend of my home project called Type and Learn.
 
 The backend is a rails API: https://github.com/tothpeter/type_and_learn_api
