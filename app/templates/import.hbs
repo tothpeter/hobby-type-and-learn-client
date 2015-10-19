@@ -72,8 +72,10 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6">
           {{#file-upload url=postPreviewImportUrl success='uploaded' acceptedFiles=".csv,.xls,.xlsx" referenceToOutside=this}}
-            <div class="dz-message">Dropa a file here or click to upload.</div>
-            <div class="dz-description">You can import from .csv .xls or .xlsx. Just make sure it contains the columns in this order: sida a, side b, knowledge level (1-5).</div>
+            <div class="dz-message">
+              <div class="message">Dropa a file here or click to upload.</div>
+              <div class="description">You can import from .csv .xls or .xlsx. Just make sure it contains the columns in this order: sida a, side b, knowledge level (1-5).</div>
+            </div>
           {{/file-upload}}
         </div>
         
