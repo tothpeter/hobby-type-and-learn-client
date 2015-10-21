@@ -35,7 +35,7 @@ test('simple login', function(assert) {
   visit('/profile');
 
   andThen(function() {
-    assert.equal(currentURL(), '/login');
+    assert.equal(currentURL(), '/login', 'Protected route, redirect to login');
   });
 
   fillIn('input[name=email]', 'hello@kalina.tech');
@@ -43,6 +43,6 @@ test('simple login', function(assert) {
   click('button[type=submit]');
 
   andThen(function() {
-    assert.equal(currentURL(), '/profile');
+    assert.equal(currentURL(), '/profile', 'After successful login, redirect to /profile');
   });
 });

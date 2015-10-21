@@ -15,9 +15,9 @@ test('it renders correctly', function(assert) {
 
   this.render(hbs`{{display-errors errors=errors showErrors=showErrors}}`);
 
-  assert.equal(this.$().text().trim(), 'error message1');
+  assert.equal(this.$().text().trim(), 'error message1', 'Display the first error message');
   
   this.set('showErrors', false);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(this.$().text().trim(), '', 'Display nothingh if there\' no error');
 });

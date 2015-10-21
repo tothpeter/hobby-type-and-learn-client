@@ -85,7 +85,7 @@ test('edit existing label', function(assert) {
     });
 
     this.patch('labels/2', function() {
-      var expectedResponseData = {"data":{"id":"2","type":"labels","attributes":{"title":"New Label Title","position":null,"user_id":2},"relationships":{"user":{"data":{"type":"users","id":"2"}}}}};
+      var expectedResponseData = {"data":{"id":"2","type":"labels","attributes":{"title":"Edited Label Title","position":null,"user_id":2},"relationships":{"user":{"data":{"type":"users","id":"2"}}}}};
 
       return [201, {"Content-Type": "application/json"}, JSON.stringify(expectedResponseData)];
     });
@@ -96,10 +96,10 @@ test('edit existing label', function(assert) {
   visit('/profile');
   click('.btn-edit-label');
 
-  fillIn('.modal-dialog input', 'New Label Title');
+  fillIn('.modal-dialog input', 'Edited Label Title');
   click('button:contains("OK")');
 
   andThen(function() {
-    assert.equal(find('.list-group-item:contains("New Label Title")').length, 1, "Displays newly created label in the list");
+    assert.equal(find('.list-group-item:contains("Edited Label Title")').length, 1, "The title of edited label has changed");
   });
 });
