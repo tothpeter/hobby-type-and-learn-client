@@ -123,7 +123,7 @@ export default Ember.Controller.extend(PostValidations, {
 
       for(var i = cards.length; i--;){
         if (!cards[i].invalid) {
-          cardsToSave.push(cards[i])
+          cardsToSave.push(cards[i]);
         }
       }
 
